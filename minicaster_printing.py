@@ -351,24 +351,26 @@ def bacteria_electrodes(valve,nozzle,height,speed,dwell,pressure,spacing):#
     g.set_pressure(pressure_box, pressure)
 
     #########test line
-    g.abs_move(**{nozzle:5})
-    g.abs_move(x=2,y=25)
-    #pressure_purge(delay = 2)
-    g.abs_move(**{nozzle:height})
-    g.toggle_pressure(pressure_box)
-    g.dwell(dwell)
-    g.feed(speed)
-    g.move(y=-20)
-    g.feed(20)
-    g.toggle_pressure(pressure_box)
-    g.clip(axis=nozzle, height=6, direction='-x')
-    g.set_pressure(pressure_box, pressure)
+    #g.abs_move(**{nozzle:5})
+    #g.abs_move(x=2,y=25)
+    ##pressure_purge(delay = 2)
+    #g.abs_move(**{nozzle:height})
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.feed(speed)
+    #g.move(y=-20)
+    #g.feed(20)
+    #g.toggle_pressure(pressure_box)
+    #g.clip(axis=nozzle, height=6, direction='-x')
+    #g.set_pressure(pressure_box, pressure)
+    ##
+    #g.abs_move(x=25,y=15)
+    #g.set_home(x=0, y=0)
+    g.abs_move(x=0,y=0)
+    g.move(y=2)
+    #g.move(y=2)   #starts first electrode farther up to avoid short circuit
     
-    g.abs_move(x=25,y=15)
-    g.set_home(x=0, y=0)
-    g.move(y=2)   #starts first electrode farther up to avoid short circuit
-    #g.move(x=8)
-    #Print start
+    ######Print start
     if spacing=='400':    
         top_electrode_connection=20.4
         bottom_electrode_connection=0
@@ -377,25 +379,35 @@ def bacteria_electrodes(valve,nozzle,height,speed,dwell,pressure,spacing):#
             g.feed(speed)
             g.toggle_pressure(pressure_box)
             g.dwell(dwell)
+            g.feed(speed*0.7)
+            g.move(y=3)
+            g.feed(speed)
             g.abs_move(y=top_electrode_connection)
             g.toggle_pressure(pressure_box)
-            g.clip(axis=nozzle, height=2, direction='-y')
-            g.move(x=0.4,y=-0.4)
+            g.feed(20)
+            g.clip(axis=nozzle, height=2, direction='+y')
+            g.move(x=0.4,y=-0.4)            
             g.abs_move(**{nozzle:height})
+            g.feed(speed)            
             g.toggle_pressure(pressure_box)
             g.dwell(dwell)
+            g.feed(speed*0.7)
+            g.move(y=-3)
+            g.feed(speed)            
             g.abs_move(y=bottom_electrode_connection)
             g.toggle_pressure(pressure_box)
-            g.clip(axis=nozzle, height=2, direction='+y')
+            g.feed(20)
+            g.clip(axis=nozzle, height=2, direction='-y')
             if i<24:
                 g.move(x=0.4,y=0.4)
-        #
+        
         g.abs_move(x=0,y=0)
+        g.move(y=-0.1)
         g.abs_move(**{nozzle:height}) 
         g.toggle_pressure(pressure_box)
         g.dwell(dwell)
         g.feed(speed*0.3)
-        g.abs_move(x=20.4,y=0)
+        g.abs_move(x=20.4)
         g.move(x=4,y=-4)
         g.feed(speed*0.2)
         g.arc(x=1.,y=0,radius=0.5)
@@ -408,9 +420,11 @@ def bacteria_electrodes(valve,nozzle,height,speed,dwell,pressure,spacing):#
         g.arc(x=-0.2,y=0,radius=0.1)
         g.toggle_pressure(pressure_box)
         g.clip(axis=nozzle, height=2, direction='+y')
+        g.feed(20)
 
         
         g.abs_move(x=0.2,y=20.4)
+        g.move(y=0.1)
         g.abs_move(**{nozzle:height}) 
         g.toggle_pressure(pressure_box)
         g.feed(speed*0.3)
@@ -469,6 +483,7 @@ def bacteria_electrodes(valve,nozzle,height,speed,dwell,pressure,spacing):#
 
         g.feed(speed)
         g.abs_move(x=0,y=20.4)
+        g.move(y=0.1)
         g.abs_move(**{nozzle:height}) 
         g.toggle_pressure(pressure_box)
         g.dwell(dwell*0.4)
@@ -496,9 +511,9 @@ def bacteria_electrodes(valve,nozzle,height,speed,dwell,pressure,spacing):#
 #LONG_serpentine_encaps_wire(nozzle='A',valve='1',pressure=30,speed=0.7,height=0.4-0.15+0.1)
 #g.abs_move(x=1.255,y=1.633)
 #g.abs_move(z=-0.003)
-g.set_home(x=0,y=0,z=0)
-bacteria_electrodes(valve='1',nozzle='z',height=0.03,speed=1.5,dwell=0.5,pressure=40,spacing='400')
+#g.set_home(x=0,y=0,z=0)
+bacteria_electrodes(valve='1',nozzle='z',height=0.03,speed=2.3,dwell=0.6,pressure=48,spacing='400')
 
-#g.view(backend='matplotlib')
+g.view(backend='matplotlib')
 
 g.teardown() 
