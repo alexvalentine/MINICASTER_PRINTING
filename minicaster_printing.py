@@ -548,13 +548,62 @@ def silver_square(valve,nozzle,height,speed,dwell,pressure):
     
     g.move(**{nozzle:3})
     g.dwell(5)
-    ########test line
+
+    #######test line
     g.move(x=3,y=3)
     #pressure_purge(delay = 2)
     g.abs_move(**{nozzle:height})
     g.toggle_pressure(pressure_box)
     g.dwell(dwell)
     g.feed(speed)
+    g.move(x=5)
+    g.move(y=0.2)
+    g.move(x=-5)
+    g.feed(20)
+    g.toggle_pressure(pressure_box)
+    g.abs_move(**{nozzle:3}) 
+    g.set_pressure(pressure_box, pressure)
+    
+
+    g.abs_move(x=0,y=0)  # move to the silver pattern's corner
+    g.set_pressure(pressure_box, pressure*0.8)    
+    g.abs_move(**{nozzle:height+0.07}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)    
+    g.meander(x=3,y=-3.8,orientation='y',spacing=0.13,start='UR')    
+    g.move(y=-1.9)
+    g.feed(speed*0.5)
+    g.move(x=-1)
+    g.move(**{nozzle:-0.05})
+    g.move(x=-9)
+    g.abs_move(**{nozzle:0.15})
+    g.arc(x=0,y=0.00001,radius=-0.2)
+    g.move(x=0.2)
+    g.arc(x=0,y=0.00001,radius=-0.4)
+    g.move(x=0.2)
+    g.arc(x=0,y=0.00001,radius=-0.6)
+    g.move(x=0.2)
+    g.arc(x=0,y=0.00001,radius=-0.8)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=10, direction='-y')
+
+
+
+
+def dielectric_square(valve,nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    g.move(**{nozzle:3})
+    g.dwell(5)
+    ########test line
+    g.move(x=1,y=1)
+    #pressure_purge(delay = 2)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(25)
     g.move(x=20)
     g.move(y=0.2)
     g.move(x=-20)
@@ -564,79 +613,16 @@ def silver_square(valve,nozzle,height,speed,dwell,pressure):
     g.set_pressure(pressure_box, pressure)
     
 
-    g.abs_move(x=5,y=10)  # move to the silver pattern's corner
-    g.abs_move(**{nozzle:height+0.03}) 
-    g.feed(speed*0.3)
+    g.abs_move(x=0,y=0)  # move to the silver pattern's corner, outside for cover
+    g.abs_move(**{nozzle:height+0.4}) 
+    g.feed(speed)
     g.toggle_pressure(pressure_box)
     g.dwell(dwell)
-    g.move(x=0.1)
-    g.arc(x=0,y=0.00001,radius=-0.2)
-    g.move(x=0.2)
-    g.arc(x=0,y=0.00001,radius=-0.4)
-    g.move(x=0.2)
-    g.arc(x=0,y=0.00001,radius=-0.6)
-    g.move(x=0.2)
-    g.arc(x=0,y=0.00001,radius=-0.8)
-    g.move(x=0.2)
-    g.feed(speed*0.6)
-    g.abs_move(**{nozzle:height+0.015}) 
-    g.move(x=10)
-    g.feed(speed)
-    g.set_pressure(pressure_box, pressure*0.8)
-    g.move(y=1.5)
-    g.meander(x=3,y=-3,orientation='y',spacing=0.08,start='LL')
+    g.meander(x=3.5,y=5,orientation='y',spacing=0.08,start='LL')
     g.toggle_pressure(pressure_box)
     g.clip(axis=nozzle, height=10, direction='-y')
 
-    
-    g.abs_move(x=5,y=20)
-    g.abs_move(**{nozzle:height+0.03}) 
-    g.feed(speed*0.3)
-    g.toggle_pressure(pressure_box)
-    g.dwell(dwell)
-    g.move(x=0.1)
-    g.arc(x=0,y=0.00001,radius=-0.2)
-    g.move(x=0.2)
-    g.arc(x=0,y=0.00001,radius=-0.4)
-    g.move(x=0.2)
-    g.arc(x=0,y=0.00001,radius=-0.6)
-    g.move(x=0.2)
-    g.arc(x=0,y=0.00001,radius=-0.8)
-    g.move(x=0.2)
-    g.feed(speed*0.6)
-    g.abs_move(**{nozzle:height+0.015}) 
-    g.move(x=10)
-    g.feed(speed)
-    g.set_pressure(pressure_box, pressure*0.8)
-    g.move(y=1.5)
-    g.meander(x=3,y=-3,orientation='y',spacing=0.08,start='LL')
-    g.toggle_pressure(pressure_box)
-    g.clip(axis=nozzle, height=10, direction='-y')
 
-    
-    g.abs_move(x=5,y=30)
-    g.abs_move(**{nozzle:height+0.03}) 
-    g.feed(speed*0.3)
-    g.toggle_pressure(pressure_box)
-    g.dwell(dwell)
-    g.move(x=0.1)
-    g.arc(x=0,y=0.00001,radius=-0.2)
-    g.move(x=0.2)
-    g.arc(x=0,y=0.00001,radius=-0.4)
-    g.move(x=0.2)
-    g.arc(x=0,y=0.00001,radius=-0.6)
-    g.move(x=0.2)
-    g.arc(x=0,y=0.00001,radius=-0.8)
-    g.move(x=0.2)
-    g.feed(speed*0.6)
-    g.abs_move(**{nozzle:height+0.015}) 
-    g.move(x=10)
-    g.feed(speed)
-    g.set_pressure(pressure_box, pressure*0.8)
-    g.move(y=1.5)
-    g.meander(x=3,y=-3,orientation='y',spacing=0.08,start='LL')
-    g.toggle_pressure(pressure_box)
-    g.clip(axis=nozzle, height=10, direction='-y')
 
 
 #print_die(speed=1.4,dwell=0.1)
@@ -646,11 +632,19 @@ def silver_square(valve,nozzle,height,speed,dwell,pressure):
 #LONG_serpentine_encaps_wire(nozzle='A',valve='1',pressure=30,speed=0.7,height=0.4-0.15+0.1)
 #g.abs_move(x=1.255,y=1.633)
 #g.abs_move(z=-0.003)
-g.set_home(x=0,y=0,z=0)
+g.set_home(z=0)
 #bacteria_electrodes(valve='1',nozzle='z',height=0.03,speed=2.3,dwell=0.6,pressure=48,spacing='400')
 #tpu_square(valve='1',nozzle='z',height=0.035,speed=14,dwell=0.02,pressure=15)
-silver_square(valve='1',nozzle='z',height=0.055,speed=2.2,dwell=0.6,pressure=52)
+silver_square(valve='1',nozzle='z',height=0.1,speed=0.8,dwell=2,pressure=52)
 
-#g.view(backend='matplotlib')
+#dielectric_square(valve='1',nozzle='z',height=0.1,speed=11,dwell=0.6,pressure=3) #35A
+
+#dielectric_square(valve='1',nozzle='z',height=0.1,speed=12,dwell=0.6,pressure=6) #1180
+#
+#dielectric_square(valve='1',nozzle='z',height=0.08,speed=8,dwell=0.6,pressure=12) #Sylgard
+
+
+
+g.view(backend='matplotlib')
 
 g.teardown() 
