@@ -623,7 +623,28 @@ def dielectric_square(valve,nozzle,height,speed,dwell,pressure):
     g.clip(axis=nozzle, height=10, direction='-y')
 
 
-
+def pick_and_place(nozzle,speed):
+    g.feed(20)
+    g.move(**{nozzle:5})
+    g.abs_move(x=-19.587,y=-21.838)
+    g.feed(speed)
+    g.abs_move(**{nozzle:-13.528})
+    g.dwell(5)
+    g.move(**{nozzle:5})
+    g.abs_move(x=28.833,y=-9.946)
+    g.abs_move(**{nozzle:-14.17876})
+    g.dwell(5)
+    g.move(**{nozzle:5})
+    g.feed(25)
+    g.abs_move(x=-25.7133,y=23.85)
+    g.feed(speed)
+    g.abs_move(**{nozzle:-13.4317})
+    g.dwell(5)
+    g.move(**{nozzle:5})
+    g.abs_move(x=28.833+1.4,y=-9.946)
+    g.abs_move(**{nozzle:-13.7595})
+    g.dwell(5)
+    g.move(**{nozzle:5})
 
 #print_die(speed=1.4,dwell=0.1)
 #print_die_wiring(speed=0.25,dwell=0.1)
@@ -632,10 +653,10 @@ def dielectric_square(valve,nozzle,height,speed,dwell,pressure):
 #LONG_serpentine_encaps_wire(nozzle='A',valve='1',pressure=30,speed=0.7,height=0.4-0.15+0.1)
 #g.abs_move(x=1.255,y=1.633)
 #g.abs_move(z=-0.003)
-g.set_home(z=0)
+#g.set_home(z=0)
 #bacteria_electrodes(valve='1',nozzle='z',height=0.03,speed=2.3,dwell=0.6,pressure=48,spacing='400')
 #tpu_square(valve='1',nozzle='z',height=0.035,speed=14,dwell=0.02,pressure=15)
-silver_square(valve='1',nozzle='z',height=0.1,speed=0.8,dwell=2,pressure=52)
+#silver_square(valve='1',nozzle='z',height=0.1,speed=0.8,dwell=2,pressure=52)
 
 #dielectric_square(valve='1',nozzle='z',height=0.1,speed=11,dwell=0.6,pressure=3) #35A
 
@@ -643,6 +664,9 @@ silver_square(valve='1',nozzle='z',height=0.1,speed=0.8,dwell=2,pressure=52)
 #
 #dielectric_square(valve='1',nozzle='z',height=0.08,speed=8,dwell=0.6,pressure=12) #Sylgard
 
+#silver_square(valve='1',nozzle='z',height=0.1,speed=0.8,dwell=2,pressure=52)
+
+pick_and_place(nozzle='z',speed=12)
 
 
 g.view(backend='matplotlib')
