@@ -646,6 +646,87 @@ def pick_and_place(nozzle,speed):
     g.dwell(5)
     g.move(**{nozzle:5})
 
+
+def oneD_arrays(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    g.move(**{nozzle:10})
+    g.dwell(10)
+
+    #######test line
+    g.move(x=3,y=3)
+    #pressure_purge(delay = 2)
+
+    for i in np.arange(3,25.5,.5):
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.dwell(dwell)
+        g.feed(i)
+        g.move(y=5)
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.move(**{nozzle:3})
+        g.move(x=0.5,y=-5)
+        
+def threeD_columns(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    g.move(**{nozzle:10})
+    g.dwell(10)
+
+    #######test line
+    g.move(x=3,y=3)
+    #pressure_purge(delay = 2)
+
+    for i in np.arange(0.05,.3,.05):
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.dwell(dwell)
+        g.feed(i)
+        g.move(**{nozzle:3})
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.move(**{nozzle:20})
+        g.move(y=-2)
+        g.move(x=2)
+        g.move(y=2)
+
+
+def threeD_lattice(nozzle,height,speed,dwell,pressure,layers):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    g.move(**{nozzle:10})
+    g.dwell(10)
+
+    g.move(x=3,y=3)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    
+    for i in range(layers):
+        if i%2==1:
+            myorient='x'
+            x_=-5
+            y_=-5
+        else:
+            myorient='y'
+            x_=5
+            y_=5
+        g.meander(x=x_,y=y_,spacing=0.54,orientation=myorient)
+        g.move(**{nozzle:0.2})
+        
+        
+    g.toggle_pressure(pressure_box)
+    g.feed(15)
+    g.abs_move(**{nozzle:15})
+    g.move(x=2)
+
+
+
 #print_die(speed=1.4,dwell=0.1)
 #print_die_wiring(speed=0.25,dwell=0.1)
 
@@ -666,8 +747,13 @@ def pick_and_place(nozzle,speed):
 
 #silver_square(valve='1',nozzle='z',height=0.1,speed=0.8,dwell=2,pressure=52)
 
-pick_and_place(nozzle='z',speed=12)
+#pick_and_place(nozzle='z',speed=12)
 
+g.set_home(x=0,y=0,z=0)
+
+#oneD_arrays(nozzle='z',height=0.025,speed=0.5,dwell=0.05,pressure=4)
+#threeD_columns(nozzle='z',height=0.025,speed=0.5,dwell=0.05,pressure=10)
+threeD_lattice(nozzle='z',height=0.4,speed=2,dwell=0.1,pressure=10,layers=4)
 
 g.view(backend='matplotlib')
 
