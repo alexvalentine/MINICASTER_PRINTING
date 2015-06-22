@@ -505,38 +505,34 @@ def bacteria_electrodes(valve,nozzle,height,speed,dwell,pressure,spacing):#
 def tpu_square(valve,nozzle,height,speed,dwell,pressure):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
-    
+    g.set_home(x=0,y=0,z=0)
     g.move(**{nozzle:3})
-    g.dwell(5)
-    ########test line
+    #g.dwell(5)
+   
+ ########test line
     g.move(x=3,y=3)
     #pressure_purge(delay = 2)
     g.abs_move(**{nozzle:height})
     g.toggle_pressure(pressure_box)
     g.dwell(dwell)
     g.feed(speed)
-    g.move(y=20)
-    g.move(x=0.2)
-    g.move(y=-20)
-    g.move(x=0.2)
-    g.move(y=20)
-    g.move(x=0.2)
-    g.move(y=-20)
-    g.move(x=0.2)
-    g.move(y=20)
+    g.move(x=8)
+    g.move(y=0.2)
+    g.move(x=-8)
+    g.move(y=0.2)
     g.feed(20)
     g.toggle_pressure(pressure_box)
-    g.clip(axis=nozzle, height=6, direction='-x')
-    g.set_pressure(pressure_box, pressure)
+    g.clip(axis=nozzle, height=3, direction='-x')
     
 
-    g.abs_move(x=16.662,y=16.125)  # move to the silver pattern's corner
-    g.move(x=-4,y=-4)   #offset for cover
+    g.move(x=2,y=2)  # move to the silver pattern's corner
     g.abs_move(**{nozzle:height}) 
     g.feed(speed)
     g.toggle_pressure(pressure_box)
     g.dwell(dwell)
-    g.meander(x=26,y=29,start='LL',spacing=0.2,orientation='y')
+    g.move(x=1,y=1)   #offset for cover
+    
+    g.meander(x=10,y=10,start='LL',spacing=0.15,orientation='y')
 
     g.toggle_pressure(pressure_box)
     g.clip(axis=nozzle, height=10, direction='-y')
@@ -916,7 +912,7 @@ def LED_Harvard(speed,dwell,pressure,height):
 #g.abs_move(z=-0.003)
 #g.set_home(z=0)
 #bacteria_electrodes(valve='1',nozzle='z',height=0.03,speed=2.3,dwell=0.6,pressure=48,spacing='400')
-#tpu_square(valve='1',nozzle='z',height=0.035,speed=14,dwell=0.02,pressure=15)
+
 #silver_square(valve='1',nozzle='z',height=0.1,speed=0.8,dwell=2,pressure=52)
 
 #dielectric_square(valve='1',nozzle='z',height=0.1,speed=11,dwell=0.6,pressure=3) #35A
@@ -934,13 +930,13 @@ def LED_Harvard(speed,dwell,pressure,height):
 #threeD_columns(nozzle='z',height=0.025,speed=0.5,dwell=0.05,pressure=10)
 #threeD_lattice(nozzle='z',height=0.4,speed=2,dwell=0.1,pressure=10,layers=4)
 
-LED_Harvard(speed=3,dwell=0.1,pressure=9,height=0.02)
+#LED_Harvard(speed=3,dwell=0.1,pressure=9,height=0.02)
+
+
+tpu_square(valve='1',nozzle='z',height=0.25,speed=15,dwell=0.02,pressure=65)
 
 
 
-
-
-
-g.view(backend='matplotlib')
+#g.view(backend='matplotlib')
 
 g.teardown() 
