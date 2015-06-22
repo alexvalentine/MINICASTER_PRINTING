@@ -532,7 +532,7 @@ def tpu_square(valve,nozzle,height,speed,dwell,pressure):
     g.dwell(dwell)
     g.move(x=1,y=1)   #offset for cover
     
-    g.meander(x=10,y=10,start='LL',spacing=0.15,orientation='y')
+    g.meander(x=25,y=25,start='LL',spacing=0.17,orientation='y')
 
     g.toggle_pressure(pressure_box)
     g.clip(axis=nozzle, height=10, direction='-y')
@@ -933,7 +933,8 @@ def LED_Harvard(speed,dwell,pressure,height):
 #LED_Harvard(speed=3,dwell=0.1,pressure=9,height=0.02)
 
 
-tpu_square(valve='1',nozzle='z',height=0.25,speed=15,dwell=0.02,pressure=65)
+tpu_square(valve='1',nozzle='z',height=0.05,speed=10,dwell=0.02,pressure=4) ###versamid_pur_1120_
+#tpu_square(valve='1',nozzle='z',height=0.15,speed=13,dwell=0.02,pressure=55) ###1180A_
 
 
 
