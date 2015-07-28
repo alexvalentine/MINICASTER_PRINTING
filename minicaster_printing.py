@@ -2,7 +2,7 @@ from mecode import G
 import numpy as np
 
 #outfile = r"/Volumes/group0/jlewis/User Files/Valentine/AFRL/my_print.pgm"
-outfile = r'C:\Users\User\Documents\GitHub\MINICASTER_PRINTING\myprint.pgm'
+outfile = r'C:\Users\User\Documents\GitHub\MINICASTER_PRINTING\myprint1.pgm'
 
 
 #Defining mecode parameters
@@ -1199,9 +1199,12 @@ def arduino_gen1(nozzle,height,speed,dwell,pressure,startx,starty):
 #tpu_square(valve='1',nozzle='z',height=0.05,speed=10,dwell=0.02,pressure=4) ###versamid_pur_1120_
 #tpu_square(valve='1',nozzle='z',height=0.15,speed=13,dwell=0.02,pressure=55) ###1180A_
 
-arduino_gen1(nozzle='z',height=0.05,speed=3,dwell=0.1,pressure=23,startx=16.962,starty=48.286)
+#arduino_gen1(nozzle='z',height=0.05,speed=3,dwell=0.1,pressure=23,startx=16.962,starty=48.286)
 
+#g.set_pressure(pressure_box, pdms_pressure)   
+#g.toggle_pressure(pressure_box)
+#g.toggle_pressure(pressure_box)
 
-g.view(backend='matplotlib')
+#g.view(backend='matplotlib')
 
 g.teardown() 
