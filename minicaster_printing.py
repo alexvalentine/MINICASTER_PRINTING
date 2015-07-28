@@ -1163,6 +1163,45 @@ def arduino_gen1(nozzle,height,speed,dwell,pressure,startx,starty):
 
 
 
+def tpu_bottom(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+########test line
+    g.abs_move(x=-1,y=1)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(y=20)
+    g.move(x=-0.2)
+    g.move(y=-20)
+    g.move(x=-0.2)
+    g.move(y=20)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=2, direction='+x')
+    
+########printing 
+    g.abs_move(-4, 2)    
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.meander(x=-25,y=45,spacing=0.25,start='LL',orientation='y')
+    g.toggle_pressure(pressure_box)
+    g.feed(10)
+    g.clip(axis=nozzle, height=3, direction='-y')
+    
+    g.abs_move(-35, 2)    
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.meander(x=-25,y=45,spacing=0.25,start='LL',orientation='y')
+    g.toggle_pressure(pressure_box)
+    g.feed(10)
+    g.clip(axis=nozzle, height=3, direction='-y')
 
 
 
@@ -1201,10 +1240,10 @@ def arduino_gen1(nozzle,height,speed,dwell,pressure,startx,starty):
 
 #arduino_gen1(nozzle='z',height=0.05,speed=3,dwell=0.1,pressure=23,startx=16.962,starty=48.286)
 
-#g.set_pressure(pressure_box, pdms_pressure)   
-#g.toggle_pressure(pressure_box)
-#g.toggle_pressure(pressure_box)
 
-#g.view(backend='matplotlib')
+tpu_bottom(nozzle='z',height=0.1,speed=10,dwell=0.2,pressure=40)
+
+
+g.view(backend='matplotlib')
 
 g.teardown() 
