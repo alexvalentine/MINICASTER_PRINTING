@@ -1665,7 +1665,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=60)
+    g.move(x=10)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1684,7 +1684,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=60)
+    g.move(x=20)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1703,7 +1703,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=60)
+    g.move(x=30)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1722,7 +1722,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=60)
+    g.move(x=40)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1741,7 +1741,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=60)
+    g.move(x=50)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1823,7 +1823,7 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
     my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
 ##
     ############BOTTOM LAYER
-            
+#            
     for i in [0,1,2,3,4,5,6,7]:
           g.abs_move(x=my_xstarts[i]-2+.8,y=3+4)
           g.abs_move(**{nozzle:height})
@@ -1851,10 +1851,10 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
           g.meander(x=-5,y=7,spacing=0.32,orientation='y',start='LL')
           g.toggle_pressure(pressure_box)
           g.feed(20)
-          g.clip(axis=nozzle, height=3, direction='-y')
+          g.clip(axis=nozzle, height=1, direction='-y')
           
 #    ############2nd LAYER     
-#    #g.dwell(20)            
+    #g.dwell(20)            
     for i in [0,1,2,3,4,5,6,7]:
           g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
           g.abs_move(**{nozzle:height+.2})
@@ -1867,11 +1867,11 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
 
           g.toggle_pressure(pressure_box)
           g.feed(20)
-          g.clip(axis=nozzle, height=3, direction='-y')
-    
+          g.clip(axis=nozzle, height=1, direction='-y')
+#    
     
 ###    ############3rd LAYER
-    #g.dwell(20)
+    g.dwell(20)
     for i in [0,1,2,3,4,5,6,7]:
           g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
           g.abs_move(**{nozzle:height+.4})
@@ -1883,11 +1883,11 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
 
           g.toggle_pressure(pressure_box)
           g.feed(20)
-          g.clip(axis=nozzle, height=3, direction='-y')
+          g.clip(axis=nozzle, height=1, direction='-y')
 ####          
 ###          
 ##    ############4th LAYER
-    #g.dwell(20)
+    g.dwell(20)
     for i in [0,1,2,3,4,5,6,7]:
           g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
           g.abs_move(**{nozzle:height+.6})
@@ -1899,13 +1899,13 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
 
           g.toggle_pressure(pressure_box)
           g.feed(20)
-          g.clip(axis=nozzle, height=3, direction='-y')
+          g.clip(axis=nozzle, height=1, direction='-y')
           
     ############5th LAYER
-    #g.dwell(20)
+    g.dwell(20)
     for i in [0,1,2,3,4,5,6,7]:
           g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
-          g.abs_move(**{nozzle:height+.9})
+          g.abs_move(**{nozzle:height+.8})
           g.toggle_pressure(pressure_box)
           g.feed(speed)
           g.dwell(dwell)
@@ -1914,13 +1914,13 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
 
           g.toggle_pressure(pressure_box)
           g.feed(20)
-          g.clip(axis=nozzle, height=3, direction='-y')
+          g.clip(axis=nozzle, height=1, direction='-y')
 
     ############6th LAYER
-    #g.dwell(20)
+    g.dwell(20)
     for i in [0,1,2,3,4,5,6,7]:
           g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
-          g.abs_move(**{nozzle:height+1.2})
+          g.abs_move(**{nozzle:height+1.})
           g.toggle_pressure(pressure_box)
           g.feed(speed)
           g.dwell(dwell)
@@ -1975,13 +1975,13 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
 #agtpu_single_filaments_layered(nozzle='z',height=0.38,speed=5,dwell=0.02,pressure=40)
 
 
-#Ag_pu_HOAC(nozzle='z',height=0.1,speed=6,pressure=25,dwell=0.2)
+#Ag_pu_HOAC(nozzle='z',height=0.3,speed=6,pressure=8,dwell=0.2)
 
-#TPU_spacing_tests(nozzle='z',height=0.4,speed=20,dwell=0.2,pressure=3)
+TPU_spacing_tests(nozzle='z',height=0.4,speed=20,dwell=0.2,pressure=3)
 
 
 
-AgTPU_strain_speciman(nozzle='z',height=0.1,speed=4,dwell=0.1,pressure=20)
+#AgTPU_strain_speciman(nozzle='z',height=0.1,speed=4,dwell=0.1,pressure=20)
 
 
 g.view(backend='matplotlib')
