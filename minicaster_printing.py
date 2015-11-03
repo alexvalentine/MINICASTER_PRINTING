@@ -1775,20 +1775,20 @@ def TPU_spacing_tests(nozzle,height,speed,dwell,pressure):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
     #
-    ########test line
-    #g.abs_move(**{nozzle:2})
-    #g.abs_move(x=2,y=2)
-    #g.abs_move(**{nozzle:height}) 
-    #g.toggle_pressure(pressure_box)
-    #g.dwell(dwell)
-    #g.feed(speed)
-    #g.move(x=10)
-    #g.toggle_pressure(pressure_box)
-    #g.feed(10)
-    #g.clip(axis=nozzle, height=3, direction='-y')
-    #
-    my_space = [0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.65]
-    my_xstarts = [3.0, 11.825, 20.65, 29.474999999999998, 38.3, 47.125, 55.949999999999996, 64.77499999999999]
+    #######test line
+    g.abs_move(**{nozzle:2})
+    g.abs_move(x=-2,y=2)
+    g.abs_move(**{nozzle:height}) 
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(x=-10)
+    g.toggle_pressure(pressure_box)
+    g.feed(10)
+    g.clip(axis=nozzle, height=3, direction='-y')
+    
+    my_space = [0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5]
+    my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
 
 
     for i in range(8):
@@ -1797,7 +1797,7 @@ def TPU_spacing_tests(nozzle,height,speed,dwell,pressure):
           g.toggle_pressure(pressure_box)
           g.feed(speed)
           g.dwell(dwell)
-          g.meander(x=7,y=44,orientation='y',spacing=my_space[i],start='LL')
+          g.meander(x=-7,y=44,orientation='y',spacing=my_space[i],start='LL')
           g.toggle_pressure(pressure_box)
           g.feed(20)
           g.clip(axis=nozzle, height=3, direction='-y')
