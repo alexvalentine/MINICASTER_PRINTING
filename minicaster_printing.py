@@ -8,7 +8,7 @@ outfile = r'C:\Users\User\Documents\GitHub\MINICASTER_PRINTING\myprint1.pgm'
 #Defining mecode parameters
 g = G(
     direct_write=False,
-    #outfile=outfile,
+    outfile=outfile,
     header=None,
     footer=None,
     print_lines=False,
@@ -1939,12 +1939,12 @@ def AgTPU_strain_gauge(nozzle,height,speed,dwell,pressure,xstart,ystart,shape):
     
     #
     #####test line
-    g.abs_move(x=-1,y=1.)
-    g.abs_move(**{nozzle:height-.04})
+    g.abs_move(x=-1,y=2)
+    g.abs_move(**{nozzle:height-.2})
     g.toggle_pressure(pressure_box)
     g.feed(speed)
     g.dwell(dwell)    
-    g.move(x=-25)
+    g.move(x=-20)
     g.toggle_pressure(pressure_box)
     g.feed(20)
     g.clip(axis=nozzle, height=3, direction='-y')
@@ -1962,11 +1962,11 @@ def AgTPU_strain_gauge(nozzle,height,speed,dwell,pressure,xstart,ystart,shape):
         g.feed(speed)
         g.dwell(dwell) 
         g.meander(x=3,y=-4,spacing=0.32,orientation='y',start='UL')
-        g.feed(speed/3)
+        g.feed(speed/2)
         g.move(y=3) 
         g.feed(speed)
-        g.meander(x=-8.2,y=30,spacing = 0.5, orientation='y',start='LL') 
-        g.feed(speed/3)
+        g.meander(x=-8.2,y=20,spacing = 0.8, orientation='y',start='LL') 
+        g.feed(speed/2)
         g.move(y=-3) 
         g.feed(speed)  
         g.meander(x=3,y=-4,spacing=0.32,orientation='y',start='LL')
@@ -1984,15 +1984,16 @@ def AgTPU_strain_gauge(nozzle,height,speed,dwell,pressure,xstart,ystart,shape):
         g.toggle_pressure(pressure_box)
         g.feed(speed)
         g.dwell(dwell) 
-        g.meander(x=3,y=-4,spacing=0.32,orientation='y',start='UL')
-        g.feed(speed/3)
+        g.feed(speed/4)
+        g.meander(x=3,y=-4,spacing=0.5,orientation='y',start='UL')
         g.move(y=3) 
         g.feed(speed)
-        g.meander(x=-21.4,y=30,spacing = 0.5, orientation='y',start='LL') 
-        g.feed(speed/3)
-        g.move(y=-3) 
-        g.feed(speed)  
-        g.meander(x=3,y=-4,spacing=0.32,orientation='y',start='LL')
+        g.meander(x=-18,y=20,spacing = 0.8, orientation='y',start='LL') 
+        #g.rect(x=-18,y=20,start='LL') 
+        #g.move(x=-18)
+        g.feed(speed/4)
+        g.move(y=-3)   
+        g.meander(x=3,y=-4,spacing=0.5,orientation='y',start='LL')
         g.toggle_pressure(pressure_box)
         g.feed(20)
         g.clip(axis=nozzle, height=3, direction='-y')   
@@ -2001,7 +2002,134 @@ def AgTPU_strain_gauge(nozzle,height,speed,dwell,pressure,xstart,ystart,shape):
 
     
 
-def AgTPU_MEA(nozzle,height,speed,dwell,pressure,xstart,ystart):
+def AgTPU_MEA_5x5(nozzle,height,speed,dwell,pressure,xstart,ystart):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+
+    my_grid = (
+              ((0,0),(0,4),(0,8),(0,12),(0,16)),
+              ((-4,0),(-4,4),(-4,8),(-4,12),(-4,16)),    
+              ((-8,0),(-8,4),(-8,8),(-8,12),(-8,16)),
+              ((-12,0),(-12,4),(-12,8),(-12,12),(-12,16)),
+              ((-16,0),(-16,4),(-16,8),(-16,12),(-16,16)),
+    )
+    
+
+    ###test line
+    #g.abs_move(x=-56,y=7)
+    #g.abs_move(**{nozzle:height})
+    #g.toggle_pressure(pressure_box)
+    #g.feed(speed)
+    #g.dwell(dwell)    
+    #g.move(y=6)
+    #g.toggle_pressure(pressure_box)
+    #g.feed(20)
+    #g.clip(axis=nozzle, height=3, direction='-y')
+    #
+#     
+#
+    for i in range(5):
+        for j in range(5):
+            
+            g.abs_move(x=my_grid[i][j][0],y=my_grid[i][j][1])   #bottom left corner
+            g.abs_move(**{nozzle:height})
+            g.toggle_pressure(pressure_box)
+            g.feed(speed)
+            g.dwell(dwell) 
+            g.move(x=0.4,y=-0.4)
+            g.rect(x=-0.8,y=0.8,start='LL')
+            g.move(x=-0.2,y=0.2)
+            g.rect(x=-0.4,y=0.4,start='LL')
+            g.toggle_pressure(pressure_box)
+            g.feed(20)
+            g.clip(axis=nozzle, height=3, direction='-y')
+     
+            
+    
+
+def AgTPU_MEA_wires_5x5(nozzle,height,speed,dwell,pressure,xstart,ystart):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+
+    my_grid = (
+              ((0,0),(0,4),(0,8),(0,12),(0,16)),
+              ((-4,0),(-4,4),(-4,8),(-4,12),(-4,16)),    
+              ((-8,0),(-8,4),(-8,8),(-8,12),(-8,16)),
+              ((-12,0),(-12,4),(-12,8),(-12,12),(-12,16)),
+              ((-16,0),(-16,4),(-16,8),(-16,12),(-16,16)),
+    )
+    
+
+    ####test line
+    #g.abs_move(x=-59,y=7)
+    #g.abs_move(**{nozzle:height})
+    #g.toggle_pressure(pressure_box)
+    #g.feed(speed)
+    #g.dwell(dwell)    
+    #g.move(y=8)
+    #g.move(x=-1)
+    #g.move(y=-4)
+    #g.toggle_pressure(pressure_box)
+    #g.feed(20)
+    #g.clip(axis=nozzle, height=3, direction='-y')
+    ##
+#          
+            
+    for i in [0,1,2,3,4]:
+        for j in [0,1,2,3,4]:
+            
+            g.abs_move(x=my_grid[i][j][0],y=my_grid[i][j][1])   #bottom left corner
+            g.abs_move(**{nozzle:height})
+            g.toggle_pressure(pressure_box)
+            g.feed(speed)
+            g.dwell(dwell)
+            
+            if j==0:
+                 
+                g.move(y=-6-3,)
+                g.toggle_pressure(pressure_box)
+                g.feed(20)
+                g.clip(axis=nozzle, height=3, direction='-y')          
+                                 
+            if j==1: 
+                
+                g.move(x=-0.8,y=-1)
+                g.move(y=-9-3)
+                g.toggle_pressure(pressure_box)
+                g.feed(20)
+                g.clip(axis=nozzle, height=3, direction='-y')  
+                
+            if j==2: 
+                
+                g.move(x=-1.4,y=-1)
+                g.move(y=-13-3)
+                g.toggle_pressure(pressure_box)
+                g.feed(20)
+                g.clip(axis=nozzle, height=3, direction='-y')   
+
+            if j==3: 
+                
+                g.move(x=-2.0,y=-1)
+                g.move(y=-17-3)
+                g.toggle_pressure(pressure_box)
+                g.feed(20)
+                g.clip(axis=nozzle, height=3, direction='-y')  
+
+            if j==4: 
+                
+                g.move(x=-2.6,y=-1)
+                g.move(y=-21-3)
+                g.toggle_pressure(pressure_box)
+                g.feed(20)
+                g.clip(axis=nozzle, height=3, direction='-y')  
+
+    
+
+
+
+def AgTPU_MEA_6x6(nozzle,height,speed,dwell,pressure,xstart,ystart):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
     
@@ -2013,16 +2141,16 @@ def AgTPU_MEA(nozzle,height,speed,dwell,pressure,xstart,ystart):
               ((-12,0),(-12,4),(-12,8),(-12,12),(-12,16),(-12,20)),
               ((-16,0),(-16,4),(-16,8),(-16,12),(-16,16),(-16,20)),
               ((-20,0),(-20,4),(-20,8),(-20,12),(-20,16),(-20,20)),
-              )
+    )
     
-    print my_grid[0][0][0]
+
     ####test line
-    g.abs_move(x=-1,y=1.)
-    g.abs_move(**{nozzle:height-.04})
+    g.abs_move(x=25,y=-5.)
+    g.abs_move(**{nozzle:height})
     g.toggle_pressure(pressure_box)
     g.feed(speed)
     g.dwell(dwell)    
-    g.move(x=-25)
+    g.move(x=-10)
     g.toggle_pressure(pressure_box)
     g.feed(20)
     g.clip(axis=nozzle, height=3, direction='-y')
@@ -2037,18 +2165,102 @@ def AgTPU_MEA(nozzle,height,speed,dwell,pressure,xstart,ystart):
             g.toggle_pressure(pressure_box)
             g.feed(speed)
             g.dwell(dwell) 
-            g.move(x=0.5,y=-0.5)
-            g.rect(x=-1,y=1,start='LL')
-            g.move(x=-0.25,y=0.25)
-            g.rect(x=-0.5,y=0.5,start='LL')
+            g.move(x=0.4,y=-0.4)
+            g.rect(x=-0.8,y=0.8,start='LL')
+            g.move(x=-0.2,y=0.2)
+            g.rect(x=-0.4,y=0.4,start='LL')
             g.toggle_pressure(pressure_box)
             g.feed(20)
             g.clip(axis=nozzle, height=3, direction='-y')
-                
-#
-#   
+     
+            
     
 
+def AgTPU_MEA_wires_6x6(nozzle,height,speed,dwell,pressure,xstart,ystart):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+
+    my_grid = (
+              ((0,0),(0,4),(0,8),(0,12),(0,16),(0,20)),
+              ((-4,0),(-4,4),(-4,8),(-4,12),(-4,16),(-4,20)),    
+              ((-8,0),(-8,4),(-8,8),(-8,12),(-8,16),(-8,20)),
+              ((-12,0),(-12,4),(-12,8),(-12,12),(-12,16),(-12,20)),
+              ((-16,0),(-16,4),(-16,8),(-16,12),(-16,16),(-16,20)),
+              ((-20,0),(-20,4),(-20,8),(-20,12),(-20,16),(-20,20)),
+    )
+    
+
+    ####test line
+    g.abs_move(x=30,y=-2.)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.feed(speed)
+    g.dwell(dwell)    
+    g.move(x=-20)
+    g.move(y=-2)
+    g.move(x=15)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=3, direction='-y')
+    ##
+#          
+            
+    for i in range(6):
+        for j in [0,1,2,3,4,5]:
+            
+            g.abs_move(x=my_grid[i][j][0],y=my_grid[i][j][1])   #bottom left corner
+            g.abs_move(**{nozzle:height})
+            g.toggle_pressure(pressure_box)
+            g.feed(speed)
+            g.dwell(dwell)
+            
+            if j==0:
+                 
+                g.move(y=-6-3,)
+                g.toggle_pressure(pressure_box)
+                g.feed(20)
+                g.clip(axis=nozzle, height=3, direction='-y')          
+                                 
+            if j==1: 
+                
+                g.move(x=-0.8,y=-1)
+                g.move(y=-9-3)
+                g.toggle_pressure(pressure_box)
+                g.feed(20)
+                g.clip(axis=nozzle, height=3, direction='-y')  
+                
+            if j==2: 
+                
+                g.move(x=-1.4,y=-1)
+                g.move(y=-13-3)
+                g.toggle_pressure(pressure_box)
+                g.feed(20)
+                g.clip(axis=nozzle, height=3, direction='-y')   
+
+            if j==3: 
+                
+                g.move(x=-2.0,y=-1)
+                g.move(y=-17-3)
+                g.toggle_pressure(pressure_box)
+                g.feed(20)
+                g.clip(axis=nozzle, height=3, direction='-y')  
+
+            if j==4: 
+                
+                g.move(x=-2.6,y=-1)
+                g.move(y=-21-3)
+                g.toggle_pressure(pressure_box)
+                g.feed(20)
+                g.clip(axis=nozzle, height=3, direction='-y')  
+
+            if j==5: 
+                
+                g.move(x=-3.2,y=-1)
+                g.move(y=-25-3)
+                g.toggle_pressure(pressure_box)
+                g.feed(20)
+                g.clip(axis=nozzle, height=3, direction='-y') 
 
 
 
@@ -2101,9 +2313,17 @@ def AgTPU_MEA(nozzle,height,speed,dwell,pressure,xstart,ystart):
 
 #AgTPU_strain_speciman(nozzle='z',height=0.1,speed=4,dwell=0.1,pressure=20)
 
-#AgTPU_strain_gauge(nozzle='z',height=0.1,speed=4,dwell=0.1,pressure=20,xstart=-4,ystart=4,shape='thin')
+#AgTPU_strain_gauge(nozzle='z',height=0.1,speed=8,dwell=0.1,pressure=12,xstart=-28.5,ystart=7,shape='thick')
 
-AgTPU_MEA(nozzle='z',height=0.1,speed=4,dwell=0.1,pressure=20,xstart=-4,ystart=4)
+AgTPU_MEA_5x5(nozzle='z',height=0.1,speed=3.5,dwell=0.1,pressure=3,xstart=-4,ystart=4)
+#2
+AgTPU_MEA_wires_5x5(nozzle='z',height=0.13,speed=12,dwell=0.1,pressure=16,xstart=-4,ystart=4)
+
+
+#AgTPU_MEA_6x6(nozzle='z',height=0.1,speed=3.5,dwell=0.1,pressure=3,xstart=-4,ystart=4)
+#2
+#AgTPU_MEA_wires_6x6(nozzle='z',height=0.15,speed=8,dwell=0.1,pressure=12,xstart=-4,ystart=4)
+
 
 g.view(backend='matplotlib')
 
