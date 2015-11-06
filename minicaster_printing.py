@@ -8,7 +8,7 @@ outfile = r'C:\Users\User\Documents\GitHub\MINICASTER_PRINTING\myprint1.pgm'
 #Defining mecode parameters
 g = G(
     direct_write=False,
-    outfile=outfile,
+    #outfile=outfile,
     header=None,
     footer=None,
     print_lines=False,
@@ -1933,6 +1933,124 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
 
 
 
+def AgTPU_strain_gauge(nozzle,height,speed,dwell,pressure,xstart,ystart,shape):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    #
+    #####test line
+    g.abs_move(x=-1,y=1.)
+    g.abs_move(**{nozzle:height-.04})
+    g.toggle_pressure(pressure_box)
+    g.feed(speed)
+    g.dwell(dwell)    
+    g.move(x=-25)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=3, direction='-y')
+    ##
+#     
+
+    if shape == 'thin':
+
+        ############# thin 
+
+        g.abs_move(x=xstart,y=ystart)   #bottom left corner
+        g.move(x=-3,y=4)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell) 
+        g.meander(x=3,y=-4,spacing=0.32,orientation='y',start='UL')
+        g.feed(speed/3)
+        g.move(y=3) 
+        g.feed(speed)
+        g.meander(x=-8.2,y=30,spacing = 0.5, orientation='y',start='LL') 
+        g.feed(speed/3)
+        g.move(y=-3) 
+        g.feed(speed)  
+        g.meander(x=3,y=-4,spacing=0.32,orientation='y',start='LL')
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.clip(axis=nozzle, height=3, direction='-y')          
+                     
+    else:    
+                 
+        ########### thick
+    
+        g.abs_move(x=xstart,y=ystart)   #bottom left corner
+        g.move(x=-3,y=4)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell) 
+        g.meander(x=3,y=-4,spacing=0.32,orientation='y',start='UL')
+        g.feed(speed/3)
+        g.move(y=3) 
+        g.feed(speed)
+        g.meander(x=-21.4,y=30,spacing = 0.5, orientation='y',start='LL') 
+        g.feed(speed/3)
+        g.move(y=-3) 
+        g.feed(speed)  
+        g.meander(x=3,y=-4,spacing=0.32,orientation='y',start='LL')
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.clip(axis=nozzle, height=3, direction='-y')   
+
+
+
+    
+
+def AgTPU_MEA(nozzle,height,speed,dwell,pressure,xstart,ystart):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+
+    my_grid = (
+              ((0,0),(0,4),(0,8),(0,12),(0,16),(0,20)),
+              ((-4,0),(-4,4),(-4,8),(-4,12),(-4,16),(-4,20)),    
+              ((-8,0),(-8,4),(-8,8),(-8,12),(-8,16),(-8,20)),
+              ((-12,0),(-12,4),(-12,8),(-12,12),(-12,16),(-12,20)),
+              ((-16,0),(-16,4),(-16,8),(-16,12),(-16,16),(-16,20)),
+              ((-20,0),(-20,4),(-20,8),(-20,12),(-20,16),(-20,20)),
+              )
+    
+    print my_grid[0][0][0]
+    ####test line
+    g.abs_move(x=-1,y=1.)
+    g.abs_move(**{nozzle:height-.04})
+    g.toggle_pressure(pressure_box)
+    g.feed(speed)
+    g.dwell(dwell)    
+    g.move(x=-25)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=3, direction='-y')
+    ##
+#     
+
+    for i in range(6):
+        for j in range(6):
+            
+            g.abs_move(x=my_grid[i][j][0],y=my_grid[i][j][1])   #bottom left corner
+            g.abs_move(**{nozzle:height})
+            g.toggle_pressure(pressure_box)
+            g.feed(speed)
+            g.dwell(dwell) 
+            g.move(x=0.5,y=-0.5)
+            g.rect(x=-1,y=1,start='LL')
+            g.move(x=-0.25,y=0.25)
+            g.rect(x=-0.5,y=0.5,start='LL')
+            g.toggle_pressure(pressure_box)
+            g.feed(20)
+            g.clip(axis=nozzle, height=3, direction='-y')
+                
+#
+#   
+    
+
+
+
 
 
 #print_die(speed=1.4,dwell=0.1)
@@ -1977,12 +2095,15 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
 
 #Ag_pu_HOAC(nozzle='z',height=0.3,speed=6,pressure=8,dwell=0.2)
 
-TPU_spacing_tests(nozzle='z',height=0.4,speed=20,dwell=0.2,pressure=3)
+#TPU_spacing_tests(nozzle='z',height=0.4,speed=20,dwell=0.2,pressure=3)
 
 
 
 #AgTPU_strain_speciman(nozzle='z',height=0.1,speed=4,dwell=0.1,pressure=20)
 
+#AgTPU_strain_gauge(nozzle='z',height=0.1,speed=4,dwell=0.1,pressure=20,xstart=-4,ystart=4,shape='thin')
+
+AgTPU_MEA(nozzle='z',height=0.1,speed=4,dwell=0.1,pressure=20,xstart=-4,ystart=4)
 
 g.view(backend='matplotlib')
 
