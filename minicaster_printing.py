@@ -2263,7 +2263,144 @@ def AgTPU_MEA_wires_6x6(nozzle,height,speed,dwell,pressure,xstart,ystart):
                 g.clip(axis=nozzle, height=3, direction='-y') 
 
 
+def pdms_pillars(nozzle,height,speed,dwell,pressure,layers):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    g.move(**{nozzle:3})
+    #g.dwell(5)
+    ########test line
+    #g.abs_move(x=1,y=1)
+    ##pressure_purge(delay = 2)
+    #g.abs_move(**{nozzle:height})
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.feed(speed)
+    #g.move(x=20)
+    #g.move(y=0.2)
+    #g.move(x=-20)
+    #g.feed(20)
+    #g.toggle_pressure(pressure_box)
+    #g.clip(axis=nozzle, height=6, direction='-x')
+    #g.set_pressure(pressure_box, pressure)
+    layers=np.zeros(layers)
 
+    g.abs_move(x=0,y=0)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    for i in layers:
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='LL')
+        g.move(**{nozzle:0.25})
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='UR')
+        g.move(**{nozzle:0.25})
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
+    
+    g.abs_move(x=0,y=10)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    for i in layers:
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='LL')
+        g.move(**{nozzle:0.25})
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='UR')
+        g.move(**{nozzle:0.25})
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=10, direction='-y')
+    
+    g.abs_move(x=0,y=25)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    for i in layers:
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='LL')
+        g.move(**{nozzle:0.25})
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='UR')
+        g.move(**{nozzle:0.25})
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=10, direction='-y')
+    
+    g.abs_move(x=0,y=35)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    for i in layers:
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='LL')
+        g.move(**{nozzle:0.25})
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='UR')
+        g.move(**{nozzle:0.25})
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=10, direction='-y')
+
+    
+    
+    g.abs_move(x=25,y=0)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    for i in layers:
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='LL')
+        g.move(**{nozzle:0.25})
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='UR')
+        g.move(**{nozzle:0.25})
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=10, direction='-y')
+    
+    g.abs_move(x=25,y=10)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    for i in layers:
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='LL')
+        g.move(**{nozzle:0.25})
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='UR')
+        g.move(**{nozzle:0.25})
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=10, direction='-y')
+    
+    g.abs_move(x=25,y=25)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    for i in layers:
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='LL')
+        g.move(**{nozzle:0.25})
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='UR')
+        g.move(**{nozzle:0.25})
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=10, direction='-y')
+    
+    g.abs_move(x=25,y=35)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    for i in layers:
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='LL')
+        g.move(**{nozzle:0.25})
+        g.meander(x=7,y=2,orientation='x',spacing=0.5,start='UR')
+        g.move(**{nozzle:0.25})
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=10, direction='-y')    
+    
+    
+    
 
 #print_die(speed=1.4,dwell=0.1)
 #print_die_wiring(speed=0.25,dwell=0.1)
@@ -2315,14 +2452,16 @@ def AgTPU_MEA_wires_6x6(nozzle,height,speed,dwell,pressure,xstart,ystart):
 
 #AgTPU_strain_gauge(nozzle='z',height=0.1,speed=8,dwell=0.1,pressure=12,xstart=-28.5,ystart=7,shape='thick')
 
-AgTPU_MEA_5x5(nozzle='z',height=0.1,speed=3.5,dwell=0.1,pressure=3,xstart=-4,ystart=4)
-#2
-AgTPU_MEA_wires_5x5(nozzle='z',height=0.13,speed=12,dwell=0.1,pressure=16,xstart=-4,ystart=4)
+#AgTPU_MEA_5x5(nozzle='z',height=0.1,speed=3.5,dwell=0.1,pressure=3,xstart=-4,ystart=4)
+##2
+#AgTPU_MEA_wires_5x5(nozzle='z',height=0.13,speed=12,dwell=0.1,pressure=16,xstart=-4,ystart=4)
 
 
 #AgTPU_MEA_6x6(nozzle='z',height=0.1,speed=3.5,dwell=0.1,pressure=3,xstart=-4,ystart=4)
 #2
 #AgTPU_MEA_wires_6x6(nozzle='z',height=0.15,speed=8,dwell=0.1,pressure=12,xstart=-4,ystart=4)
+
+pdms_pillars(nozzle='z',height=0.4,speed=5,dwell=0.2,pressure=20,layers=60)
 
 
 g.view(backend='matplotlib')
