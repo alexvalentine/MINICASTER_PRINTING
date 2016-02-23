@@ -1789,18 +1789,28 @@ def TPU_spacing_tests(nozzle,height,speed,dwell,pressure):
     
     my_space = [0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5]
     my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
-
-
+#
     for i in range(8):
-          g.abs_move(x=my_xstarts[i],y=3)
+          g.abs_move(x=my_xstarts[i],y=0)
           g.abs_move(**{nozzle:height}) 
           g.toggle_pressure(pressure_box)
           g.feed(speed)
           g.dwell(dwell)
-          g.meander(x=-7,y=44,orientation='y',spacing=my_space[i],start='LL')
+          g.meander(x=-7,y=20,orientation='y',spacing=my_space[i],start='LL')
           g.toggle_pressure(pressure_box)
           g.feed(20)
           g.clip(axis=nozzle, height=3, direction='-y')
+#
+    #for i in range(8):
+    #      g.abs_move(x=my_xstarts[i],y=23)
+    #      g.abs_move(**{nozzle:height}) 
+    #      g.toggle_pressure(pressure_box)
+    #      g.feed(speed)
+    #      g.dwell(dwell)
+    #      g.meander(x=-7,y=20,orientation='y',spacing=my_space[i],start='LL')
+    #      g.toggle_pressure(pressure_box)
+    #      g.feed(20)
+    #      g.clip(axis=nozzle, height=3, direction='-y')
 
 
 
@@ -2550,7 +2560,8 @@ def agtpu_pillars(nozzle,height,speed,dwell,pressure):
 
 #Ag_pu_HOAC(nozzle='z',height=0.3,speed=6,pressure=8,dwell=0.2)
 
-#TPU_spacing_tests(nozzle='z',height=0.4,speed=20,dwell=0.2,pressure=3)
+#TPU_spacing_tests(nozzle='z',height=0.4+0.3+0.3,speed=11,dwell=0.2,pressure=6)
+TPU_spacing_tests(nozzle='z',height=0.4,speed=12,dwell=0.2,pressure=2)   ####pdms
 
 
 
@@ -2568,7 +2579,7 @@ def agtpu_pillars(nozzle,height,speed,dwell,pressure):
 #AgTPU_MEA_wires_6x6(nozzle='z',height=0.15,speed=8,dwell=0.1,pressure=12,xstart=-4,ystart=4)
 
 #pdms_pillars(nozzle='z',height=0.4,speed=5,dwell=0.2,pressure=20,layers=60)
-agtpu_pillars(nozzle='z',height=0.2,speed=4,dwell=0.3,pressure=15)
+#agtpu_pillars(nozzle='z',height=0.2,speed=4,dwell=0.3,pressure=15)
 
 g.view(backend='matplotlib')
 
