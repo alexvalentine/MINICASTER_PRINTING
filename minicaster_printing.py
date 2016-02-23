@@ -2397,10 +2397,116 @@ def pdms_pillars(nozzle,height,speed,dwell,pressure,layers):
         g.meander(x=7,y=2,orientation='x',spacing=0.5,start='UR')
         g.move(**{nozzle:0.25})
     g.toggle_pressure(pressure_box)
-    g.clip(axis=nozzle, height=10, direction='-y')    
+    g.clip(axis=nozzle, height=10, direction='-y')   
+
+
+def agtpu_pillars(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    #g.move(**{nozzle:3})
+    #g.dwell(5)
+    ########test line
+    #g.abs_move(x=1,y=1)
+    ##pressure_purge(delay = 2)
+    #g.abs_move(**{nozzle:height})
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.feed(speed)
+    #g.move(x=20)
+    #g.move(y=0.2)
+    #g.move(x=-20)
+    #g.feed(20)
+    #g.toggle_pressure(pressure_box)
+    #g.clip(axis=nozzle, height=6, direction='-x')
+    #g.set_pressure(pressure_box, pressure)
+   
+    #layers=np.zeros(layers)
+
+    g.abs_move(x=26.49-4.06,y=-26.83)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:-2.42+height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.move(x=4)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
+    
+    g.abs_move(x=26.12-4.06,y=-16.71)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:-2.65+height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.move(x=4)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
+    
+    g.abs_move(x=26.10-4.06,y=-1.11)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:-2.95+height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.move(x=4,y=0.5)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
     
     
+    g.abs_move(x=25.22-4.06,y=8.29)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:-2.84+height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.move(x=4)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
     
+    ########
+
+    g.abs_move(x=45.87,y=9.24)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:-2.94+height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.move(x=4)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
+    
+    g.abs_move(x=46.35,y=-0.76)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:-2.9+height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.move(x=4)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
+    
+    g.abs_move(x=46.84,y=-16.05)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:-2.76+height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.move(x=4)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
+    
+    
+    g.abs_move(x=47.08,y=-25.08)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:-2.74+height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.move(x=4)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
+
 
 #print_die(speed=1.4,dwell=0.1)
 #print_die_wiring(speed=0.25,dwell=0.1)
@@ -2461,8 +2567,8 @@ def pdms_pillars(nozzle,height,speed,dwell,pressure,layers):
 #2
 #AgTPU_MEA_wires_6x6(nozzle='z',height=0.15,speed=8,dwell=0.1,pressure=12,xstart=-4,ystart=4)
 
-pdms_pillars(nozzle='z',height=0.4,speed=5,dwell=0.2,pressure=20,layers=60)
-
+#pdms_pillars(nozzle='z',height=0.4,speed=5,dwell=0.2,pressure=20,layers=60)
+agtpu_pillars(nozzle='z',height=0.2,speed=4,dwell=0.3,pressure=15)
 
 g.view(backend='matplotlib')
 
