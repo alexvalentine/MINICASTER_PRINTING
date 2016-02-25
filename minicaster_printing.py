@@ -2410,6 +2410,81 @@ def pdms_pillars(nozzle,height,speed,dwell,pressure,layers):
     g.clip(axis=nozzle, height=10, direction='-y')   
 
 
+
+def agtpu_lapshear(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    #g.move(**{nozzle:3})
+    #g.dwell(5)
+    ########test line
+    #g.abs_move(x=1,y=1)
+    ##pressure_purge(delay = 2)
+    #g.abs_move(**{nozzle:height})
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.feed(speed)
+    #g.move(x=20)
+    #g.move(y=0.2)
+    #g.move(x=-20)
+    #g.feed(20)
+    #g.toggle_pressure(pressure_box)
+    #g.clip(axis=nozzle, height=6, direction='-x')
+    #g.set_pressure(pressure_box, pressure)
+   
+    #layers=np.zeros(layers)
+
+    g.abs_move(x=0,y=0)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.meander(x=-6,y=6,orientation='x',spacing=0.3)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
+    
+    g.abs_move(x=-11.34,y=0.89)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.meander(x=-6,y=6,orientation='x',spacing=0.3)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
+    
+    g.abs_move(x=-22.86,y=.58)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.meander(x=-6,y=6,orientation='x',spacing=0.3)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
+    #
+    g.abs_move(x=-34.72,y=1.39)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.meander(x=-6,y=6,orientation='x',spacing=0.3)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
+    #
+    g.abs_move(x=-46.69,y=1.67)  # move to the silver pattern's corner, outside for cover
+    #g.move(x=10,y=10)
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.meander(x=-6,y=6,orientation='x',spacing=0.3)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=2, direction='-y')
+
+
 def agtpu_pillars(nozzle,height,speed,dwell,pressure):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
@@ -2561,7 +2636,7 @@ def agtpu_pillars(nozzle,height,speed,dwell,pressure):
 #Ag_pu_HOAC(nozzle='z',height=0.3,speed=6,pressure=8,dwell=0.2)
 
 #TPU_spacing_tests(nozzle='z',height=0.4+0.3+0.3,speed=11,dwell=0.2,pressure=6)
-TPU_spacing_tests(nozzle='z',height=0.4,speed=12,dwell=0.2,pressure=2)   ####pdms
+#TPU_spacing_tests(nozzle='z',height=0.4,speed=12,dwell=0.2,pressure=2)   ####pdms
 
 
 
@@ -2580,6 +2655,10 @@ TPU_spacing_tests(nozzle='z',height=0.4,speed=12,dwell=0.2,pressure=2)   ####pdm
 
 #pdms_pillars(nozzle='z',height=0.4,speed=5,dwell=0.2,pressure=20,layers=60)
 #agtpu_pillars(nozzle='z',height=0.2,speed=4,dwell=0.3,pressure=15)
+
+
+agtpu_lapshear(nozzle='z',height=0.15,speed=4,dwell=0.3,pressure=22)
+
 
 g.view(backend='matplotlib')
 
