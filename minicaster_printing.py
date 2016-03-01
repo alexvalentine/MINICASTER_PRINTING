@@ -1820,76 +1820,72 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
     
     #
     #####test line
-    g.abs_move(x=-2,y=1.)
-    g.abs_move(**{nozzle:height-.04})
-    g.toggle_pressure(pressure_box)
-    g.feed(speed)
-    g.dwell(dwell)    
-    g.move(x=-25)
-    g.toggle_pressure(pressure_box)
-    g.feed(20)
-    g.clip(axis=nozzle, height=3, direction='-y')
-    
+    #g.abs_move(x=-2,y=1.)
+    #g.abs_move(**{nozzle:height-.04})
+    #g.toggle_pressure(pressure_box)
+    #g.feed(speed)
+    #g.dwell(dwell)    
+    #g.move(x=-25)
+    #g.toggle_pressure(pressure_box)
+    #g.feed(20)
+    #g.clip(axis=nozzle, height=3, direction='-y')
+    #
     my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
 ##
-    ############BOTTOM LAYER
-#            
-    for i in [0,1,2,3,4,5,6,7]:
-          g.abs_move(x=my_xstarts[i]-2+.8,y=3+4)
-          g.abs_move(**{nozzle:height})
-          g.toggle_pressure(pressure_box)
-          g.feed(speed)
-          g.dwell(dwell)
+###    ############BOTTOM LAYER
+###            
+#    for i in [0,1,2,3,4,5,6,7]:
+#          g.abs_move(x=my_xstarts[i]-2+.8+1-.7+.25-.8+1,y=3+4+1+2.5-3-4)
+#          g.abs_move(**{nozzle:height})
+#          g.toggle_pressure(pressure_box)
+#          g.feed(speed)
+#          g.dwell(dwell)
+##
+#          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
+#          g.move(x=2.5)
+#          g.move(y=1.5)
+#          g.move(x=0.8,y=-1.3)
+#          g.move(x=-1.6)
+#          g.move(x=0.8,y=1.3)
+#          
+#          
+#          g.move(y=21)
+#          
+#          g.move(x=0.8,y=1.3)
+#          g.move(x=-1.6)
+#          g.move(x=0.8,y=-1.3)
+#          g.move(y=1.5)
+#          g.move(x=2.5)
+#          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
+#          g.toggle_pressure(pressure_box)
+#          g.feed(20)
+#          g.clip(axis=nozzle,height=1, direction='+x')
+##          
+#    ##########2nd LAYER     
+#    for i in [0,1,2,3,4,5,6,7]:
+#          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8-.7+1+.25-.8+1,y=3+4+7+1-3.5-4)
+#          g.abs_move(**{nozzle:height+.2})
+#          g.toggle_pressure(pressure_box)
+#          g.feed(speed)
+#          g.dwell(dwell)
 #
-          g.meander(x=-5,y=7,spacing=0.32,orientation='y',start='LL')
-          g.move(x=2.5)
-          g.move(y=1.5)
-          g.move(x=0.8,y=-1.3)
-          g.move(x=-1.6)
-          g.move(x=0.8,y=1.3)
-          g.move(y=-1.5)
-
-          g.move(y=25)
-          
-          g.move(y=1.5)
-          g.move(y=-3)
-          g.move(x=0.8,y=1.3)
-          g.move(x=-1.6)
-          g.move(x=0.8,y=-1.3)
-          g.move(y=1.5)
-          g.move(x=2.5)
-          g.meander(x=-5,y=7,spacing=0.32,orientation='y',start='LL')
-          g.toggle_pressure(pressure_box)
-          g.feed(20)
-          g.clip(axis=nozzle, height=1, direction='-y')
-          
-#    ############2nd LAYER     
-    #g.dwell(20)            
-    for i in [0,1,2,3,4,5,6,7]:
-          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
-          g.abs_move(**{nozzle:height+.2})
-          g.toggle_pressure(pressure_box)
-          g.feed(speed)
-          g.dwell(dwell)
-
-          g.move(y=25)  
-
-
-          g.toggle_pressure(pressure_box)
-          g.feed(20)
-          g.clip(axis=nozzle, height=1, direction='-y')
-#    
+#          g.move(y=24)  
+#
+#
+#          g.toggle_pressure(pressure_box)
+#          g.feed(20)
+#          g.clip(axis=nozzle, height=1, direction='-y')
     
+#    
 ###    ############3rd LAYER
-    g.dwell(20)
     for i in [0,1,2,3,4,5,6,7]:
-          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
+          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8-.7+1+.25-.8+1,y=3+4+7+1-3.5-4)
           g.abs_move(**{nozzle:height+.4})
           g.toggle_pressure(pressure_box)
           g.feed(speed)
           g.dwell(dwell)
 
-          g.move(y=25)
+          g.move(y=24)
 
           g.toggle_pressure(pressure_box)
           g.feed(20)
@@ -1897,48 +1893,48 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
 ####          
 ###          
 ##    ############4th LAYER
-    g.dwell(20)
-    for i in [0,1,2,3,4,5,6,7]:
-          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
-          g.abs_move(**{nozzle:height+.6})
-          g.toggle_pressure(pressure_box)
-          g.feed(speed)
-          g.dwell(dwell)
-
-          g.move(y=25)
-
-          g.toggle_pressure(pressure_box)
-          g.feed(20)
-          g.clip(axis=nozzle, height=1, direction='-y')
-          
-    ############5th LAYER
-    g.dwell(20)
-    for i in [0,1,2,3,4,5,6,7]:
-          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
-          g.abs_move(**{nozzle:height+.8})
-          g.toggle_pressure(pressure_box)
-          g.feed(speed)
-          g.dwell(dwell)
-
-          g.move(y=25)
-
-          g.toggle_pressure(pressure_box)
-          g.feed(20)
-          g.clip(axis=nozzle, height=1, direction='-y')
-
-    ############6th LAYER
-    g.dwell(20)
-    for i in [0,1,2,3,4,5,6,7]:
-          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
-          g.abs_move(**{nozzle:height+1.})
-          g.toggle_pressure(pressure_box)
-          g.feed(speed)
-          g.dwell(dwell)
-          g.move(y=25)
-
-          g.toggle_pressure(pressure_box)
-          g.feed(20)
-          g.clip(axis=nozzle, height=3, direction='-y')
+#    g.dwell(20)
+#    for i in [0,1,2,3,4,5,6,7]:
+#          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
+#          g.abs_move(**{nozzle:height+.6})
+#          g.toggle_pressure(pressure_box)
+#          g.feed(speed)
+#          g.dwell(dwell)
+#
+#          g.move(y=25)
+#
+#          g.toggle_pressure(pressure_box)
+#          g.feed(20)
+#          g.clip(axis=nozzle, height=1, direction='-y')
+#          
+#    ############5th LAYER
+#    g.dwell(20)
+#    for i in [0,1,2,3,4,5,6,7]:
+#          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
+#          g.abs_move(**{nozzle:height+.8})
+#          g.toggle_pressure(pressure_box)
+#          g.feed(speed)
+#          g.dwell(dwell)
+#
+#          g.move(y=25)
+#
+#          g.toggle_pressure(pressure_box)
+#          g.feed(20)
+#          g.clip(axis=nozzle, height=1, direction='-y')
+#
+#    ############6th LAYER
+#    g.dwell(20)
+#    for i in [0,1,2,3,4,5,6,7]:
+#          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
+#          g.abs_move(**{nozzle:height+1.})
+#          g.toggle_pressure(pressure_box)
+#          g.feed(speed)
+#          g.dwell(dwell)
+#          g.move(y=25)
+#
+#          g.toggle_pressure(pressure_box)
+#          g.feed(20)
+#          g.clip(axis=nozzle, height=3, direction='-y')
 
 
 
@@ -2411,6 +2407,35 @@ def pdms_pillars(nozzle,height,speed,dwell,pressure,layers):
 
 
 
+def ionic_lines(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+
+    g.dwell(5)
+
+    #######test line
+    g.abs_move(x=0,y=0)
+    #pressure_purge(delay = 2)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    
+    g.move(x=14.4)
+    
+    #g.move(x=5,**{nozzle:-0.2})
+    #g.move(x=3.8)
+    #g.move(x=5,**{nozzle:0.2})
+    
+    
+    g.dwell(dwell)
+    g.feed(20)
+    g.toggle_pressure(pressure_box)
+    g.clip(axis=nozzle, height=3, direction='-x')
+    g.set_pressure(pressure_box, pressure)
+
+
+
 def agtpu_lapshear(nozzle,height,speed,dwell,pressure):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
@@ -2640,7 +2665,7 @@ def agtpu_pillars(nozzle,height,speed,dwell,pressure):
 
 
 
-#AgTPU_strain_speciman(nozzle='z',height=0.1,speed=4,dwell=0.1,pressure=20)
+AgTPU_strain_speciman(nozzle='z',height=0.13,speed=4,dwell=0.1,pressure=16)
 
 #AgTPU_strain_gauge(nozzle='z',height=0.1,speed=8,dwell=0.1,pressure=12,xstart=-28.5,ystart=7,shape='thick')
 
@@ -2657,8 +2682,9 @@ def agtpu_pillars(nozzle,height,speed,dwell,pressure):
 #agtpu_pillars(nozzle='z',height=0.2,speed=4,dwell=0.3,pressure=15)
 
 
-agtpu_lapshear(nozzle='z',height=0.15,speed=4,dwell=0.3,pressure=22)
+#agtpu_lapshear(nozzle='z',height=0.15,speed=4,dwell=0.3,pressure=22)
 
+#ionic_lines(nozzle='z',height=0.2,speed=4,dwell=3, pressure=8)
 
 g.view(backend='matplotlib')
 
