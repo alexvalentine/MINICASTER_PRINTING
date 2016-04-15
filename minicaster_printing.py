@@ -109,82 +109,174 @@ def print_die(speed,dwell):
                     g.clip(height=2, direction='-x')
    # g.move(z=0.5)
 
-def print_die_wiring(speed,dwell):
-    #g.set_pressure(pressure_box, pdms_pressure)   
+def print_die_wiring(dwell,height,pressure,speed):
+    
+    g.set_pressure(pressure_box, pressure)   
     g.feed(5)
-    for i in np.arange(2):        
-        for j in np.arange(6):
+    g.abs_move(z=1)
+    
+    
+    #######test line
+    g.abs_move(x=-7,y=-7.2)
+    #pressure_purge(delay = 2)
+    g.abs_move(z=height)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(x=10)
+    g.feed(10)
+    g.toggle_pressure(pressure_box)
+    g.clip(height=2, direction='+y')
+   ##
+    
+    
+    
+    
+    for i in [0,1]:        
+        for j in [0,1,2,3,4,5]:
                 if i==0:
-                    g.abs_move(x=pad_positions[23-j][0],y=pad_positions[23-j][1])
-                    g.move(z=-2)
-                    g.feed(speed)
-                    #g.toggle_pressure(pressure_box)
-                    g.dwell(dwell)
-                    g.move(y=-3)
                     if j<3:
-                        g.move(x=-3/(j+1),y=-3)
-                        #g.toggle_pressure(pressure_box)
+                        g.abs_move(x=pad_positions[23-j][0],y=pad_positions[23-j][1])
+                        g.move(x=-(2+(1-j)),y=-5)
+                        g.abs_move(z=height) 
+                        g.feed(speed)
+                        g.toggle_pressure(pressure_box)
+                        g.dwell(dwell)
+                        g.abs_move(x=pad_positions[23-j][0],y=pad_positions[23-j][1]-3)
+                        g.move(y=3-.2)
                         g.feed(10)
-                        g.clip(height=2, direction='-x')
+                        g.clip(height=2, direction='+y')
+                        g.toggle_pressure(pressure_box)
                     else:
-                        g.move(x=(j+1)-3,y=-3)
-                        #g.toggle_pressure(pressure_box)
+                        g.abs_move(x=pad_positions[23-j][0],y=pad_positions[23-j][1])
+                        g.move(x=(2+(j-4)),y=-5)
+                        g.abs_move(z=height)
+                        g.feed(speed)
+                        g.toggle_pressure(pressure_box)
+                        g.dwell(dwell)
+                        g.abs_move(x=pad_positions[23-j][0],y=pad_positions[23-j][1]-3)
+                        g.move(y=3-.2)
                         g.feed(10)
-                        g.clip(height=2, direction='-x')
+                        g.clip(height=2, direction='+y')
+                        g.toggle_pressure(pressure_box)
                 else:
-                    g.abs_move(x=pad_positions[6+j][0],y=pad_positions[6+j][1])
-                    g.move(z=-2)
-                    g.feed(speed)
-                    #g.toggle_pressure(pressure_box)
-                    g.dwell(dwell)
-                    g.move(y=3)
                     if j<3:
-                        g.move(x=-3/(j+1),y=3)
-                        #g.toggle_pressure(pressure_box)
+                        g.abs_move(x=pad_positions[6+j][0],y=pad_positions[6+j][1])
+                        g.move(x=-(2+(1-j)),y=5)
+                        g.abs_move(z=height) 
+                        g.feed(speed)
+                        g.toggle_pressure(pressure_box)
+                        g.dwell(dwell)
+                        g.abs_move(x=pad_positions[6+j][0],y=pad_positions[6+j][1]+3)
+                        g.move(y=-3+.2)
                         g.feed(10)
-                        g.clip(height=2, direction='-x')
+                        g.clip(height=2, direction='-y')
+                        g.toggle_pressure(pressure_box)
                     else:
-                        g.move(x=(j+1)-3,y=3)
-                        #g.toggle_pressure(pressure_box)
+                        g.abs_move(x=pad_positions[6+j][0],y=pad_positions[6+j][1])
+                        g.move(x=(2+(j-4)),y=5)
+                        g.abs_move(z=height)
+                        g.feed(speed)
+                        g.toggle_pressure(pressure_box)
+                        g.dwell(dwell)
+                        g.abs_move(x=pad_positions[6+j][0],y=pad_positions[6+j][1]+3)
+                        g.move(y=-3+.2)
                         g.feed(10)
-                        g.clip(height=2, direction='-x')
+                        g.clip(height=2, direction='-y')
+                        g.toggle_pressure(pressure_box)
                         
-    for i in np.arange(2):        
-        for j in np.arange(6):
+                        
+                        
+    for i in [0,1]:        
+        for j in [0,1,2,3,4,5]:
                 if i==0:
-                    g.abs_move(x=pad_positions[j][0],y=pad_positions[j][1])
-                    g.move(z=-2)
-                    g.feed(speed)
-                    #g.toggle_pressure(pressure_box)
-                    g.dwell(dwell)                    
-                    g.move(x=-3)
                     if j<3:
-                        g.move(x=-3,y=-3/(j+1))
-                        #g.toggle_pressure(pressure_box)
+                        g.abs_move(x=pad_positions[j][0],y=pad_positions[j][1])
+                        g.move(y=-(2+(1-j)),x=-5)
+                        g.abs_move(z=height) 
+                        g.feed(speed)
+                        g.toggle_pressure(pressure_box)
+                        g.dwell(dwell)
+                        g.abs_move(y=pad_positions[j][1],x=pad_positions[j][0]-3)
+                        g.move(x=3-.2)
                         g.feed(10)
                         g.clip(height=2, direction='-x')
+                        g.toggle_pressure(pressure_box)
                     else:
-                        g.move(x=-3,y=(j+1)-3)
-                        #g.toggle_pressure(pressure_box)
+                        g.abs_move(x=pad_positions[j][0],y=pad_positions[j][1])
+                        g.move(y=(2+(j-4)),x=-5)
+                        g.abs_move(z=height)
+                        g.feed(speed)
+                        g.toggle_pressure(pressure_box)
+                        g.dwell(dwell)
+                        g.abs_move(y=pad_positions[j][1],x=pad_positions[j][0]-3)
+                        g.move(x=3-.2)
                         g.feed(10)
                         g.clip(height=2, direction='-x')
+                        g.toggle_pressure(pressure_box)
                 else:
-                    g.abs_move(x=pad_positions[17-j][0],y=pad_positions[17-j][1])
-                    g.move(z=-2)
-                    g.feed(speed)
-                    #g.toggle_pressure(pressure_box)
-                    g.dwell(dwell) 
-                    g.move(x=3)
                     if j<3:
-                        g.move(x=3,y=-3/(j+1))
-                        #g.toggle_pressure(pressure_box)
+                        g.abs_move(x=pad_positions[17-j][0],y=pad_positions[17-j][1])
+                        g.move(y=-(2+(1-j)),x=5)
+                        g.abs_move(z=height) 
+                        g.feed(speed)
+                        g.toggle_pressure(pressure_box)
+                        g.dwell(dwell)
+                        g.abs_move(y=pad_positions[17-j][1],x=pad_positions[17-j][0]+3)
+                        g.move(x=-3+.2)
                         g.feed(10)
-                        g.clip(height=2, direction='-x')
+                        g.clip(height=2, direction='+x')
+                        g.toggle_pressure(pressure_box)
                     else:
-                        g.move(x=3,y=(j+1)-3)
-                        #g.toggle_pressure(pressure_box)
+                        g.abs_move(x=pad_positions[17-j][0],y=pad_positions[17-j][1])
+                        g.move(y=(2+(j-4)),x=5)
+                        g.abs_move(z=height)
+                        g.feed(speed)
+                        g.toggle_pressure(pressure_box)
+                        g.dwell(dwell)
+                        g.abs_move(y=pad_positions[17-j][1],x=pad_positions[17-j][0]+3)
+                        g.move(x=-3+.2)
                         g.feed(10)
-                        g.clip(height=2, direction='-x')
+                        g.clip(height=2, direction='+x')
+                        g.toggle_pressure(pressure_box)                        
+    #                    
+    #for i in np.arange(2):        
+    #    for j in np.arange(6):
+    #            if i==0:
+    #                g.abs_move(x=pad_positions[j][0],y=pad_positions[j][1])
+    #                g.move(z=-2)
+    #                g.feed(speed)
+    #                #g.toggle_pressure(pressure_box)
+    #                g.dwell(dwell)                    
+    #                g.move(x=-3)
+    #                if j<3:
+    #                    g.move(x=-3,y=-3/(j+1))
+    #                    #g.toggle_pressure(pressure_box)
+    #                    g.feed(10)
+    #                    g.clip(height=2, direction='-x')
+    #                else:
+    #                    g.move(x=-3,y=(j+1)-3)
+    #                    #g.toggle_pressure(pressure_box)
+    #                    g.feed(10)
+    #                    g.clip(height=2, direction='-x')
+    #            else:
+    #                g.abs_move(x=pad_positions[17-j][0],y=pad_positions[17-j][1])
+    #                g.move(z=-2)
+    #                g.feed(speed)
+    #                #g.toggle_pressure(pressure_box)
+    #                g.dwell(dwell) 
+    #                g.move(x=3)
+    #                if j<3:
+    #                    g.move(x=3,y=-3/(j+1))
+    #                    #g.toggle_pressure(pressure_box)
+    #                    g.feed(10)
+    #                    g.clip(height=2, direction='-x')
+    #                else:
+    #                    g.move(x=3,y=(j+1)-3)
+    #                    #g.toggle_pressure(pressure_box)
+    #                    g.feed(10)
+    #                    g.clip(height=2, direction='-x')
+    
 def LONG_serpentine_encaps_pdms(nozzle,valve,pressure,speed,height):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
@@ -1173,35 +1265,22 @@ def tpu_bottom(nozzle,height,speed,dwell,pressure):
     g.toggle_pressure(pressure_box)
     g.dwell(dwell)
     g.feed(speed)
-    g.move(y=20)
-    g.move(x=-0.2)
-    g.move(y=-20)
-    g.move(x=-0.2)
-    g.move(y=20)
+    g.move(x=-20)
     g.toggle_pressure(pressure_box)
     g.feed(20)
     g.clip(axis=nozzle, height=2, direction='+x')
     
 ########printing 
-    g.abs_move(-4, 2)    
+    g.abs_move(-4, 4)    
     g.abs_move(**{nozzle:height}) 
     g.feed(speed)
     g.toggle_pressure(pressure_box)
     g.dwell(dwell)
-    g.meander(x=-25,y=45,spacing=0.25,start='LL',orientation='y')
+    g.meander(x=-65,y=40,spacing=0.5,start='LL',orientation='x')
     g.toggle_pressure(pressure_box)
     g.feed(10)
     g.clip(axis=nozzle, height=3, direction='-y')
-    
-    g.abs_move(-35, 2)    
-    g.abs_move(**{nozzle:height}) 
-    g.feed(speed)
-    g.toggle_pressure(pressure_box)
-    g.dwell(dwell)
-    g.meander(x=-25,y=45,spacing=0.25,start='LL',orientation='y')
-    g.toggle_pressure(pressure_box)
-    g.feed(10)
-    g.clip(axis=nozzle, height=3, direction='-y')
+
 
 
 
@@ -1640,18 +1719,18 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
     
-#########test line
-    g.abs_move(**{nozzle:2})
-    g.abs_move(x=2,y=2)
-    g.abs_move(**{nozzle:height})
-    g.toggle_pressure(pressure_box)
-    g.dwell(dwell)
-    g.feed(speed)
-    g.move(x=10)
-    g.move(x=-0.2)
-    g.toggle_pressure(pressure_box)
-    g.feed(10)
-    g.clip(axis=nozzle, height=3, direction='-y')
+##########test line
+#    g.abs_move(**{nozzle:2})
+#    g.abs_move(x=2,y=2)
+#    g.abs_move(**{nozzle:height})
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(dwell)
+#    g.feed(speed)
+#    g.move(x=10)
+#    g.move(x=-0.2)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(10)
+#    g.clip(axis=nozzle, height=3, direction='-y')
 
 #########print
 
@@ -1665,7 +1744,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=10)
+    g.move(x=60)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1684,7 +1763,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=20)
+    g.move(x=60)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1703,7 +1782,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=30)
+    g.move(x=60)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1722,7 +1801,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=40)
+    g.move(x=60)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1741,7 +1820,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=50)
+    g.move(x=60)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1818,27 +1897,27 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
     
-    #
-    #####test line
-    #g.abs_move(x=-2,y=1.)
-    #g.abs_move(**{nozzle:height-.04})
-    #g.toggle_pressure(pressure_box)
-    #g.feed(speed)
-    #g.dwell(dwell)    
-    #g.move(x=-25)
-    #g.toggle_pressure(pressure_box)
-    #g.feed(20)
-    #g.clip(axis=nozzle, height=3, direction='-y')
-    #
+    
+#    ####test line
+#    g.abs_move(x=-2,y=1.)
+#    g.abs_move(**{nozzle:height-.04})
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed)
+#    g.dwell(dwell)    
+#    g.move(x=-25)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(20)
+#    g.clip(axis=nozzle, height=3, direction='-y')
+#    
     my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
-##
-###    ############BOTTOM LAYER
+###
+####    ############BOTTOM LAYER
 ###            
-#    for i in [0,1,2,3,4,5,6,7]:
-#          g.abs_move(x=my_xstarts[i]-2+.8+1-.7+.25-.8+1,y=3+4+1+2.5-3-4)
-#          g.abs_move(**{nozzle:height})
+#    for i in [4,5,6]:
+#          g.abs_move(x=my_xstarts[i]-1.5,y=3+6)
+#          g.abs_move(**{nozzle:0.2})
 #          g.toggle_pressure(pressure_box)
-#          g.feed(speed)
+#          g.feed(speed*0.7)
 #          g.dwell(dwell)
 ##
 #          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
@@ -1848,9 +1927,12 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
 #          g.move(x=-1.6)
 #          g.move(x=0.8,y=1.3)
 #          
-#          
+#          g.abs_move(**{nozzle:height})
+#          g.feed(speed)
 #          g.move(y=21)
 #          
+#          g.feed(speed*0.7)
+#          g.abs_move(**{nozzle:0.2})
 #          g.move(x=0.8,y=1.3)
 #          g.move(x=-1.6)
 #          g.move(x=0.8,y=-1.3)
@@ -1861,10 +1943,11 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
 #          g.feed(20)
 #          g.clip(axis=nozzle,height=1, direction='+x')
 ##          
+#    g.dwell(240)
 #    ##########2nd LAYER     
-#    for i in [0,1,2,3,4,5,6,7]:
-#          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8-.7+1+.25-.8+1,y=3+4+7+1-3.5-4)
-#          g.abs_move(**{nozzle:height+.2})
+#    for i in [4,5,6]:
+#          g.abs_move(x=my_xstarts[i]-2.5-1.5,y=3+6+4)
+#          g.abs_move(**{nozzle:height*2})
 #          g.toggle_pressure(pressure_box)
 #          g.feed(speed)
 #          g.dwell(dwell)
@@ -1875,12 +1958,13 @@ def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
 #          g.toggle_pressure(pressure_box)
 #          g.feed(20)
 #          g.clip(axis=nozzle, height=1, direction='-y')
-    
 #    
+    g.dwell(240)
+##   
 ###    ############3rd LAYER
-    for i in [0,1,2,3,4,5,6,7]:
-          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8-.7+1+.25-.8+1,y=3+4+7+1-3.5-4)
-          g.abs_move(**{nozzle:height+.4})
+    for i in [4,5,6]:
+          g.abs_move(x=my_xstarts[i]-2.5-1.5,y=3+6+4)
+          g.abs_move(**{nozzle:height*3})
           g.toggle_pressure(pressure_box)
           g.feed(speed)
           g.dwell(dwell)
@@ -2619,7 +2703,6 @@ def agtpu_pillars(nozzle,height,speed,dwell,pressure):
 
 
 #print_die(speed=1.4,dwell=0.1)
-#print_die_wiring(speed=0.25,dwell=0.1)
 
 #LONG_serpentine_encaps_pdms(nozzle='B',valve='2',pressure=22,speed=9,height=0.15+.24+.28)
 #LONG_serpentine_encaps_wire(nozzle='A',valve='1',pressure=30,speed=0.7,height=0.4-0.15+0.1)
@@ -2654,18 +2737,18 @@ def agtpu_pillars(nozzle,height,speed,dwell,pressure):
 #arduino_gen1(nozzle='z',height=0.05,speed=3,dwell=0.1,pressure=23,startx=16.962,starty=48.286)
 
 
-#tpu_bottom(nozzle='z',height=0.1,speed=10,dwell=0.2,pressure=40)
+tpu_bottom(nozzle='z',height=0.4,speed=20,dwell=0.2,pressure=10)
 #agtpu_single_filaments_layered(nozzle='z',height=0.38,speed=5,dwell=0.02,pressure=40)
 
 
-#Ag_pu_HOAC(nozzle='z',height=0.3,speed=6,pressure=8,dwell=0.2)
+#Ag_pu_HOAC(nozzle='z',height=0.15,speed=4,pressure=26,dwell=0.5)
 
 #TPU_spacing_tests(nozzle='z',height=0.4+0.3+0.3,speed=11,dwell=0.2,pressure=6)
 #TPU_spacing_tests(nozzle='z',height=0.4,speed=12,dwell=0.2,pressure=2)   ####pdms
 
 
 
-AgTPU_strain_speciman(nozzle='z',height=0.13,speed=4,dwell=0.1,pressure=16)
+#AgTPU_strain_speciman(nozzle='z',height=0.2,speed=4,dwell=0.1,pressure=15)
 
 #AgTPU_strain_gauge(nozzle='z',height=0.1,speed=8,dwell=0.1,pressure=12,xstart=-28.5,ystart=7,shape='thick')
 
@@ -2685,6 +2768,40 @@ AgTPU_strain_speciman(nozzle='z',height=0.13,speed=4,dwell=0.1,pressure=16)
 #agtpu_lapshear(nozzle='z',height=0.15,speed=4,dwell=0.3,pressure=22)
 
 #ionic_lines(nozzle='z',height=0.2,speed=4,dwell=3, pressure=8)
+
+#print_die_wiring(dwell=0.1,height=0.05,pressure=4,speed=8)
+#
+#g.abs_move(x=0,y=0)
+#g.move(x=18)
+#g.set_home(x=0,y=0)
+#
+#print_die_wiring(dwell=0.1,height=0.05,pressure=4,speed=8)
+#g.abs_move(x=0,y=0)
+#g.move(x=18)
+#g.set_home(x=0,y=0)
+
+#print_die_wiring(dwell=0.1,height=0.05,pressure=4,speed=8)
+#g.abs_move(x=0,y=0)
+#g.move(y=-22)
+#g.set_home(x=0,y=0)
+#
+#print_die_wiring(dwell=0.1,height=0.05,pressure=2,speed=8)
+#g.abs_move(x=0,y=0)
+#g.move(x=18)
+#g.set_home(x=0,y=0)
+#
+#print_die_wiring(dwell=0.1,height=0.05,pressure=2,speed=8)
+#g.abs_move(x=0,y=0)
+#g.move(y=22)
+#g.set_home(x=0,y=0)
+#
+#print_die_wiring(dwell=0.1,height=0.05,pressure=2,speed=8)
+#
+#g.abs_move(x=0,y=0)
+#g.move(y=22)
+#g.set_home(x=0,y=0)
+
+
 
 g.view(backend='matplotlib')
 
