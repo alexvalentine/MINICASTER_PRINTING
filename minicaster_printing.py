@@ -276,7 +276,102 @@ def print_die_wiring(dwell,height,pressure,speed):
     #                    #g.toggle_pressure(pressure_box)
     #                    g.feed(10)
     #                    g.clip(height=2, direction='-x')
+
     
+        
+
+def print_electrodes(dwell,height,pressure,speed):
+    
+    g.set_pressure(pressure_box, pressure)   
+    g.feed(5)
+    g.abs_move(z=1)
+    
+    
+    ########test line
+    #g.abs_move(x=-1,y=2.5)
+    ##pressure_purge(delay = 2)
+    #g.abs_move(z=height)
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.feed(speed)
+    #g.move(x=-50)
+    #g.feed(10)
+    #g.toggle_pressure(pressure_box)
+    #g.clip(height=2, direction='+y')
+   ##
+    
+    
+    
+    #
+    #
+    #g.abs_move(x=-4,y=4)
+    #g.abs_move(z=height) 
+    #g.feed(speed)
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.meander(x=-20,y=20,spacing=0.2,start='LL')
+    #g.feed(10)
+    #g.clip(height=2, direction='+x')
+    #g.toggle_pressure(pressure_box) 
+    ##
+    #
+    #g.abs_move(x=-4,y=4+21)
+    #g.abs_move(z=height) 
+    #g.feed(speed)
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.meander(x=-20,y=20,spacing=0.2,start='LL')
+    #g.feed(10)
+    #g.clip(height=2, direction='+x')
+    #g.toggle_pressure(pressure_box )
+    ##  
+    #   
+    ##     
+    g.abs_move(x=-26,y=4)
+    g.abs_move(z=height) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.meander(x=-20,y=20,spacing=0.2,start='LL')
+    g.feed(10)
+    g.clip(height=2, direction='+x')
+    g.toggle_pressure(pressure_box) 
+    #
+    #g.abs_move(x=-26-22,y=4)
+    #g.abs_move(z=height) 
+    #g.feed(speed)
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.meander(x=-20,y=20,spacing=0.2,start='LL')
+    #g.feed(10)
+    #g.clip(height=2, direction='+x')
+    #g.toggle_pressure(pressure_box) 
+    #
+    #g.abs_move(x=-26,y=4+21)
+    #g.abs_move(z=height) 
+    #g.feed(speed)
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.meander(x=-20,y=20,spacing=0.2,start='LL')
+    #g.feed(10)
+    #g.clip(height=2, direction='+x')
+    #g.toggle_pressure(pressure_box) 
+    #
+    #g.abs_move(x=-26-22,y=4+21)
+    #g.abs_move(z=height) 
+    #g.feed(speed)
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.meander(x=-20,y=20,spacing=0.2,start='LL')
+    #g.feed(10)
+    #g.clip(height=2, direction='+x')
+    #g.toggle_pressure(pressure_box)                                
+                                        
+                                            
+                                                
+                                                    
+                                                        
+                                                                
 def LONG_serpentine_encaps_pdms(nozzle,valve,pressure,speed,height):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
@@ -1252,34 +1347,6 @@ def arduino_gen1(nozzle,height,speed,dwell,pressure,startx,starty):
     g.toggle_pressure(pressure_box)
     g.feed(15)
     g.clip(axis=nozzle, height=2,direction='-x')
-
-
-
-def tpu_bottom(nozzle,height,speed,dwell,pressure):
-    g.feed(25)
-    g.set_pressure(pressure_box, pressure)
-    
-########test line
-    g.abs_move(x=-1,y=1)
-    g.abs_move(**{nozzle:height})
-    g.toggle_pressure(pressure_box)
-    g.dwell(dwell)
-    g.feed(speed)
-    g.move(x=-20)
-    g.toggle_pressure(pressure_box)
-    g.feed(20)
-    g.clip(axis=nozzle, height=2, direction='+x')
-    
-########printing 
-    g.abs_move(-4, 4)    
-    g.abs_move(**{nozzle:height}) 
-    g.feed(speed)
-    g.toggle_pressure(pressure_box)
-    g.dwell(dwell)
-    g.meander(x=-65,y=40,spacing=0.5,start='LL',orientation='x')
-    g.toggle_pressure(pressure_box)
-    g.feed(10)
-    g.clip(axis=nozzle, height=3, direction='-y')
 
 
 
@@ -2702,6 +2769,36 @@ def agtpu_pillars(nozzle,height,speed,dwell,pressure):
     g.clip(axis=nozzle, height=2, direction='-y')
 
 
+
+def tpu_bottom(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+#########test line
+#    g.abs_move(x=-1,y=-2.51)
+#    g.abs_move(**{nozzle:height})
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(dwell)
+#    g.feed(speed)
+#    g.move(x=-60)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(20)
+#    g.clip(axis=nozzle, height=2, direction='+x')
+#    
+########printing 
+    g.abs_move(0, 0)    
+    g.abs_move(**{nozzle:height}) 
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.meander(x=-65,y=32,spacing=0.25,start='LL',orientation='x')
+    g.toggle_pressure(pressure_box)
+    g.feed(10)
+    g.clip(axis=nozzle, height=3, direction='-y')
+
+
+
+
 #print_die(speed=1.4,dwell=0.1)
 
 #LONG_serpentine_encaps_pdms(nozzle='B',valve='2',pressure=22,speed=9,height=0.15+.24+.28)
@@ -2737,7 +2834,6 @@ def agtpu_pillars(nozzle,height,speed,dwell,pressure):
 #arduino_gen1(nozzle='z',height=0.05,speed=3,dwell=0.1,pressure=23,startx=16.962,starty=48.286)
 
 
-tpu_bottom(nozzle='z',height=0.4,speed=20,dwell=0.2,pressure=10)
 #agtpu_single_filaments_layered(nozzle='z',height=0.38,speed=5,dwell=0.02,pressure=40)
 
 
@@ -2800,6 +2896,15 @@ tpu_bottom(nozzle='z',height=0.4,speed=20,dwell=0.2,pressure=10)
 #g.abs_move(x=0,y=0)
 #g.move(y=22)
 #g.set_home(x=0,y=0)
+
+
+
+#print_electrodes(dwell=0.1,height=0.05,pressure=22,speed=10)
+
+
+
+
+tpu_bottom(nozzle='z',height=0.15,speed=15,dwell=0.2,pressure=40)
 
 
 
