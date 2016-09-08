@@ -1923,7 +1923,7 @@ def TPU_spacing_tests(nozzle,height,speed,dwell,pressure):
     #
     #######test line
     g.abs_move(**{nozzle:2})
-    g.abs_move(x=-2,y=2)
+    g.abs_move(x=-2,y=1)
     g.abs_move(**{nozzle:height}) 
     g.toggle_pressure(pressure_box)
     g.dwell(dwell)
@@ -1933,16 +1933,16 @@ def TPU_spacing_tests(nozzle,height,speed,dwell,pressure):
     g.feed(10)
     g.clip(axis=nozzle, height=3, direction='-y')
     
-    my_space = [0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5]
+    my_space = [0.55,0.55,0.55,0.55,0.55,0.55,0.55,0.55]
     my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
 #
     for i in range(8):
-          g.abs_move(x=my_xstarts[i],y=0)
+          g.abs_move(x=my_xstarts[i],y=3)
           g.abs_move(**{nozzle:height}) 
           g.toggle_pressure(pressure_box)
           g.feed(speed)
           g.dwell(dwell)
-          g.meander(x=-7,y=20,orientation='y',spacing=my_space[i],start='LL')
+          g.meander(x=-7,y=43,orientation='y',spacing=my_space[i],start='LL')
           g.toggle_pressure(pressure_box)
           g.feed(20)
           g.clip(axis=nozzle, height=3, direction='-y')
@@ -1958,134 +1958,6 @@ def TPU_spacing_tests(nozzle,height,speed,dwell,pressure):
     #      g.feed(20)
     #      g.clip(axis=nozzle, height=3, direction='-y')
 
-
-
-def AgTPU_strain_speciman(nozzle,height,speed,dwell,pressure):
-    g.feed(25)
-    g.set_pressure(pressure_box, pressure)
-    
-    
-#    ####test line
-#    g.abs_move(x=-2,y=1.)
-#    g.abs_move(**{nozzle:height-.04})
-#    g.toggle_pressure(pressure_box)
-#    g.feed(speed)
-#    g.dwell(dwell)    
-#    g.move(x=-25)
-#    g.toggle_pressure(pressure_box)
-#    g.feed(20)
-#    g.clip(axis=nozzle, height=3, direction='-y')
-#    
-    my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
-###
-####    ############BOTTOM LAYER
-###            
-#    for i in [4,5,6]:
-#          g.abs_move(x=my_xstarts[i]-1.5,y=3+6)
-#          g.abs_move(**{nozzle:0.2})
-#          g.toggle_pressure(pressure_box)
-#          g.feed(speed*0.7)
-#          g.dwell(dwell)
-##
-#          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
-#          g.move(x=2.5)
-#          g.move(y=1.5)
-#          g.move(x=0.8,y=-1.3)
-#          g.move(x=-1.6)
-#          g.move(x=0.8,y=1.3)
-#          
-#          g.abs_move(**{nozzle:height})
-#          g.feed(speed)
-#          g.move(y=21)
-#          
-#          g.feed(speed*0.7)
-#          g.abs_move(**{nozzle:0.2})
-#          g.move(x=0.8,y=1.3)
-#          g.move(x=-1.6)
-#          g.move(x=0.8,y=-1.3)
-#          g.move(y=1.5)
-#          g.move(x=2.5)
-#          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
-#          g.toggle_pressure(pressure_box)
-#          g.feed(20)
-#          g.clip(axis=nozzle,height=1, direction='+x')
-##          
-#    g.dwell(240)
-#    ##########2nd LAYER     
-#    for i in [4,5,6]:
-#          g.abs_move(x=my_xstarts[i]-2.5-1.5,y=3+6+4)
-#          g.abs_move(**{nozzle:height*2})
-#          g.toggle_pressure(pressure_box)
-#          g.feed(speed)
-#          g.dwell(dwell)
-#
-#          g.move(y=24)  
-#
-#
-#          g.toggle_pressure(pressure_box)
-#          g.feed(20)
-#          g.clip(axis=nozzle, height=1, direction='-y')
-#    
-    g.dwell(240)
-##   
-###    ############3rd LAYER
-    for i in [4,5,6]:
-          g.abs_move(x=my_xstarts[i]-2.5-1.5,y=3+6+4)
-          g.abs_move(**{nozzle:height*3})
-          g.toggle_pressure(pressure_box)
-          g.feed(speed)
-          g.dwell(dwell)
-
-          g.move(y=24)
-
-          g.toggle_pressure(pressure_box)
-          g.feed(20)
-          g.clip(axis=nozzle, height=1, direction='-y')
-####          
-###          
-##    ############4th LAYER
-#    g.dwell(20)
-#    for i in [0,1,2,3,4,5,6,7]:
-#          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
-#          g.abs_move(**{nozzle:height+.6})
-#          g.toggle_pressure(pressure_box)
-#          g.feed(speed)
-#          g.dwell(dwell)
-#
-#          g.move(y=25)
-#
-#          g.toggle_pressure(pressure_box)
-#          g.feed(20)
-#          g.clip(axis=nozzle, height=1, direction='-y')
-#          
-#    ############5th LAYER
-#    g.dwell(20)
-#    for i in [0,1,2,3,4,5,6,7]:
-#          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
-#          g.abs_move(**{nozzle:height+.8})
-#          g.toggle_pressure(pressure_box)
-#          g.feed(speed)
-#          g.dwell(dwell)
-#
-#          g.move(y=25)
-#
-#          g.toggle_pressure(pressure_box)
-#          g.feed(20)
-#          g.clip(axis=nozzle, height=1, direction='-y')
-#
-#    ############6th LAYER
-#    g.dwell(20)
-#    for i in [0,1,2,3,4,5,6,7]:
-#          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
-#          g.abs_move(**{nozzle:height+1.})
-#          g.toggle_pressure(pressure_box)
-#          g.feed(speed)
-#          g.dwell(dwell)
-#          g.move(y=25)
-#
-#          g.toggle_pressure(pressure_box)
-#          g.feed(20)
-#          g.clip(axis=nozzle, height=3, direction='-y')
 
 
 
@@ -2797,7 +2669,1075 @@ def tpu_bottom(nozzle,height,speed,dwell,pressure):
     g.clip(axis=nozzle, height=3, direction='-y')
 
 
+def filament_pic_tests(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    #
+#
+    g.abs_move(**{nozzle:2}) 
+    g.abs_move(x=39,y=21)
+    g.abs_move(**{nozzle:height}) 
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(y=-20)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=2, direction='-y')    
+##    
+    g.abs_move(x=40,y=21)
+    g.abs_move(**{nozzle:height}) 
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(y=-20)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=2, direction='-y')    
+    
+    g.abs_move(x=41,y=21)
+    g.abs_move(**{nozzle:height}) 
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(y=-20)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=2, direction='-y')    
+#
 
+    g.abs_move(**{nozzle:2}) 
+    g.abs_move(x=42,y=21)
+    g.abs_move(**{nozzle:height}) 
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(y=-20)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=2, direction='-y')    
+    
+    g.abs_move(x=43,y=21)
+    g.abs_move(**{nozzle:height}) 
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(y=-20)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=2, direction='-y')    
+    
+    g.abs_move(x=44,y=21)
+    g.abs_move(**{nozzle:height}) 
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(y=-20)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=2, direction='-y')    
+
+    g.abs_move(x=45,y=21)
+    g.abs_move(**{nozzle:height}) 
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(y=-20)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=2, direction='-y')  
+
+def TPU_film(nozzle,height,speed,dwell,pressure,start):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    #
+    ########test line
+    #g.abs_move(**{nozzle:2})
+    #g.abs_move(x=-1,y=1)
+    #g.abs_move(**{nozzle:height})
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.feed(speed)
+    #g.move(x=-20)
+    #g.toggle_pressure(pressure_box)
+    #g.feed(10)
+    #g.clip(axis=nozzle, height=3, direction='-y')
+    #
+    
+    if start=='BR':
+        #######test line
+        g.abs_move(**{nozzle:2})
+        g.abs_move(x=-1,y=1)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.dwell(dwell)
+        g.feed(speed)
+        g.move(x=-20)
+        g.toggle_pressure(pressure_box)
+        g.feed(10)
+        g.clip(axis=nozzle, height=3, direction='-y')
+        
+        
+        g.abs_move(x=-3,y=4)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.meander(x=-66,y=42,orientation='y',spacing=0.59,start='LL')
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.clip(axis=nozzle, height=3, direction='-y')
+    else:
+        g.abs_move(x=-69,y=46)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.meander(x=66,y=42,orientation='y',spacing=0.55,start='UL')
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.clip(axis=nozzle, height=3, direction='-y')
+
+def TPU_film(nozzle,height,speed,dwell,pressure,start):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    ##
+    ########test line
+    #g.abs_move(**{nozzle:2})
+    #g.abs_move(x=-1,y=1)
+    #g.abs_move(**{nozzle:height})
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.feed(speed)
+    #g.move(x=-20)
+    #g.toggle_pressure(pressure_box)
+    #g.feed(10)
+    #g.clip(axis=nozzle, height=3, direction='-y')
+    
+    
+    if start=='BR':
+        #######test line
+        g.abs_move(**{nozzle:2})
+        g.abs_move(x=-1,y=1)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.dwell(dwell)
+        g.feed(speed)
+        g.move(x=-20)
+        g.toggle_pressure(pressure_box)
+        g.feed(10)
+        g.clip(axis=nozzle, height=3, direction='-y')
+        
+        
+        g.abs_move(x=-3,y=4)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.meander(x=-67,y=42,orientation='y',spacing=0.59,start='LL')
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.clip(axis=nozzle, height=3, direction='-y')
+#
+
+
+
+def TPU_sensor(nozzle,height,speed,dwell,pressure,start):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    ##
+    ########test line
+    #g.abs_move(**{nozzle:2})
+    #g.abs_move(x=-1,y=1)
+    #g.abs_move(**{nozzle:height})
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.feed(speed)
+    #g.move(x=-20)
+    #g.toggle_pressure(pressure_box)
+    #g.feed(10)
+    #g.clip(axis=nozzle, height=3, direction='-y')
+    
+    
+    if start=='BR':
+        #######test line
+        g.abs_move(**{nozzle:2})
+        g.abs_move(x=-1,y=1)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.dwell(dwell)
+        g.feed(speed)
+        g.move(x=-20)
+        g.toggle_pressure(pressure_box)
+        g.feed(10)
+        g.clip(axis=nozzle, height=3, direction='-y')
+        
+        
+#        g.abs_move(x=-3,y=4)
+#        g.abs_move(**{nozzle:height})
+#        g.toggle_pressure(pressure_box)
+#        g.feed(speed)
+#        g.dwell(dwell)
+#        g.meander(x=-12,y=42,orientation='y',spacing=0.59,start='LL')
+#        g.toggle_pressure(pressure_box)
+#        g.feed(20)
+#        g.clip(axis=nozzle, height=3, direction='-y')
+#
+#        g.abs_move(x=-17,y=4)
+#        g.abs_move(**{nozzle:height})
+#        g.toggle_pressure(pressure_box)
+#        g.feed(speed)
+#        g.dwell(dwell)
+#        g.meander(x=-12,y=42,orientation='y',spacing=0.59,start='LL')
+#        g.toggle_pressure(pressure_box)
+#        g.feed(20)
+#        g.clip(axis=nozzle, height=3, direction='-y')
+#
+#        g.abs_move(x=-31,y=4)
+#        g.abs_move(**{nozzle:height})
+#        g.toggle_pressure(pressure_box)
+#        g.feed(speed)
+#        g.dwell(dwell)
+#        g.meander(x=-12,y=42,orientation='y',spacing=0.59,start='LL')
+#        g.toggle_pressure(pressure_box)
+#        g.feed(20)
+#        g.clip(axis=nozzle, height=3, direction='-y')
+#
+#        g.abs_move(x=-45,y=4)
+#        g.abs_move(**{nozzle:height})
+#        g.toggle_pressure(pressure_box)
+#        g.feed(speed)
+#        g.dwell(dwell)
+#        g.meander(x=-12,y=42,orientation='y',spacing=0.59,start='LL')
+#        g.toggle_pressure(pressure_box)
+#        g.feed(20)
+#        g.clip(axis=nozzle, height=3, direction='-y')
+
+        g.abs_move(x=-59,y=4)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.meander(x=-8,y=20,orientation='y',spacing=0.59,start='LL')
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.clip(axis=nozzle, height=3, direction='-y')
+        
+        g.abs_move(x=-59,y=26)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.meander(x=-8,y=20,orientation='y',spacing=0.59,start='LL')
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.clip(axis=nozzle, height=3, direction='-y')
+        
+def AgTPU_epidermal_sensors(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    
+    ####test line
+    g.abs_move(x=0,y=-1.6)
+    g.abs_move(**{nozzle:height-0.16})
+    g.toggle_pressure(pressure_box)
+    g.feed(speed)
+    g.dwell(dwell)    
+    g.move(x=-10)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=3, direction='-y')
+    ##
+    ############BOTTOM LAYER
+    #        
+    
+    g.abs_move(x=-0.5,y=0.75+21.5)
+    g.rect(x=-7,y=16)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.feed(speed*0.7)
+    g.dwell(dwell)
+    g.meander(x=-2,y=2,spacing=0.25,orientation='y')   
+    g.move(y=2)
+    g.feed(speed)
+    g.meander(x=-3,y=12,spacing=0.48,orientation='y')   
+    g.feed(speed*0.7)
+    g.move(y=-2)      
+    g.meander(x=-2,y=-2,spacing=0.25,orientation='y')   
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle,height=2, direction='+x')
+        
+                          
+def AgTPU_strain_speciman_LED(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    
+    ####test line
+    g.abs_move(x=0,y=-1)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.feed(speed)
+    g.dwell(dwell)    
+    g.move(x=-25)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=3, direction='-y')
+    
+    my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
+    my_xstarts = np.subtract(my_xstarts,-3)
+    
+    ###########BOTTOM LAYER
+            
+    for i in [0,1,2,3,4,5,6,7]:
+          g.abs_move(x=my_xstarts[i]-1,y=3+2+3-2)
+          g.abs_move(**{nozzle:height})
+          g.toggle_pressure(pressure_box)
+          g.feed(speed*0.7)
+          g.dwell(dwell)
+          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
+          g.move(x=2.5)
+          g.move(y=1.5)
+          g.move(x=0.8,y=-1.3)
+          g.move(x=-1.6)
+          g.move(x=0.8,y=1.3)          
+          g.feed(speed)        
+          g.move(y=9.7)
+          
+          g.toggle_pressure(pressure_box)
+          g.feed(speed*3)
+          g.dwell(0.5)
+          g.move(y=0.8,**{nozzle:2.0})
+          g.move(**{nozzle:2})
+          g.dwell(0.5)
+          g.move(**{nozzle:-2})
+          g.move(y=0.8,**{nozzle:-2.0})
+          g.feed(speed)
+          g.toggle_pressure(pressure_box)
+          g.dwell(0.4)
+          
+          g.move(y=9.7)
+          
+          g.feed(speed*0.7)
+          g.move(x=0.8,y=1.3)
+          g.move(x=-1.6)
+          g.move(x=0.8,y=-1.3)
+          g.move(y=1.5)
+          g.move(x=2.5)
+          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
+          g.toggle_pressure(pressure_box)
+          g.feed(20)
+          g.clip(axis=nozzle,height=2, direction='+x')
+        
+   ##########2nd LAYER     
+    for i in [0,1,2,3,4,5,6,7]:
+          g.abs_move(x=my_xstarts[i]-1-2.5,y=3+2+3-2+4)
+          g.abs_move(**{nozzle:height+0.1})
+          g.toggle_pressure(pressure_box)
+          g.feed(speed)
+          g.dwell(dwell)
+
+          g.move(y=11.2)
+#          
+          g.toggle_pressure(pressure_box)
+          g.feed(speed*3)
+          g.dwell(0.5)
+          g.move(y=0.8,**{nozzle:2.0})
+          g.move(**{nozzle:2})
+          g.dwell(0.5)
+          g.move(**{nozzle:-2})
+          g.move(y=0.8,**{nozzle:-2.0})
+          g.feed(speed)
+          g.toggle_pressure(pressure_box)
+          g.dwell(0.4)
+          
+          g.move(y=11.2)
+
+          g.toggle_pressure(pressure_box)
+          g.feed(20)
+          g.clip(axis=nozzle, height=2, direction='-y')
+    
+     ##########3rd LAYER     
+    for i in [0,1,2,3,4,5,6,7]:
+          g.abs_move(x=my_xstarts[i]-1-2.5,y=3+2+3-2+4)
+          g.abs_move(**{nozzle:height+0.2})
+          g.toggle_pressure(pressure_box)
+          g.feed(speed)
+          g.dwell(dwell)
+
+          g.move(y=11.2)
+#          
+          g.toggle_pressure(pressure_box)
+          g.feed(speed*3)
+          g.dwell(0.5)
+          g.move(y=0.8,**{nozzle:2.0})
+          g.move(**{nozzle:2})
+          g.dwell(0.5)
+          g.move(**{nozzle:-2})
+          g.move(y=0.8,**{nozzle:-2.0})
+          g.feed(speed)
+          g.toggle_pressure(pressure_box)
+          g.dwell(0.4)
+          
+          g.move(y=11.2)
+
+
+          g.toggle_pressure(pressure_box)
+          g.feed(20)
+          g.clip(axis=nozzle, height=2, direction='-y') 
+          
+##    ############3rd LAYER
+#    #g.dwell(20)
+#    for i in [0,1,2,3,4,5,6,7]:
+#          g.abs_move(x=my_xstarts[i]+1+2.5,y=3+2+7)
+#          g.abs_move(C=-27.969,**{nozzle:height+0.2}) 
+#          g.feed(speed)
+#          if valve is not None:
+#              g.set_valve(num = valve, value = 1)
+#          g.dwell(dwell)
+#
+#          g.move(y=11.2)
+#          
+#          g.set_valve(num = valve, value = 0)
+#          g.feed(speed*3)
+#          g.dwell(0.5)
+#          g.move(y=0.8,**{nozzle:2.0})
+#          g.move(**{nozzle:2})
+#          g.dwell(0.5)
+#          g.move(**{nozzle:-2})
+#          g.move(y=0.8,**{nozzle:-2.0})
+#          g.feed(speed)
+#          g.set_valve(num = valve, value = 1)
+#          g.dwell(0.4)
+#          
+#          g.move(y=11.2)
+#
+#          g.set_valve(num = valve, value = 0)
+#          g.feed(40)
+#          g.clip(axis=nozzle,height=5, direction='+y')
+###          
+
+
+def AgTPU_strain_speciman_filament(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    
+#    ####test line
+#    g.abs_move(x=-2,y=1.)
+#    g.abs_move(**{nozzle:height-.04})
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed)
+#    g.dwell(dwell)    
+#    g.move(x=-25)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(20)
+#    g.clip(axis=nozzle, height=3, direction='-y')
+#    
+    my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
+###
+####    ############BOTTOM LAYER
+##            
+    for i in [4,5,6]:
+          g.abs_move(x=my_xstarts[i]-1.5,y=3+6)
+          g.abs_move(**{nozzle:0.2})
+          g.toggle_pressure(pressure_box)
+          g.feed(speed*0.7)
+          g.dwell(dwell)
+#
+          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
+          g.move(x=2.5)
+          g.move(y=1.5)
+          g.move(x=0.8,y=-1.3)
+          g.move(x=-1.6)
+          g.move(x=0.8,y=1.3)
+          
+          g.abs_move(**{nozzle:height})
+          g.feed(speed)
+          g.move(y=21)
+          
+          g.feed(speed*0.7)
+          g.abs_move(**{nozzle:0.2})
+          g.move(x=0.8,y=1.3)
+          g.move(x=-1.6)
+          g.move(x=0.8,y=-1.3)
+          g.move(y=1.5)
+          g.move(x=2.5)
+          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
+          g.toggle_pressure(pressure_box)
+          g.feed(20)
+          g.clip(axis=nozzle,height=1, direction='+x')
+#          
+#    g.dwell(240)
+#    ##########2nd LAYER     
+#    for i in [4,5,6]:
+#          g.abs_move(x=my_xstarts[i]-2.5-1.5,y=3+6+4)
+#          g.abs_move(**{nozzle:height*2})
+#          g.toggle_pressure(pressure_box)
+#          g.feed(speed)
+#          g.dwell(dwell)
+#
+#          g.move(y=24)  
+#
+#
+#          g.toggle_pressure(pressure_box)
+#          g.feed(20)
+#          g.clip(axis=nozzle, height=1, direction='-y')
+#    
+    g.dwell(240)
+##   
+###    ############3rd LAYER
+    for i in [4,5,6]:
+          g.abs_move(x=my_xstarts[i]-2.5-1.5,y=3+6+4)
+          g.abs_move(**{nozzle:height*3})
+          g.toggle_pressure(pressure_box)
+          g.feed(speed)
+          g.dwell(dwell)
+
+          g.move(y=24)
+
+          g.toggle_pressure(pressure_box)
+          g.feed(20)
+          g.clip(axis=nozzle, height=1, direction='-y')
+####          
+###          
+##    ############4th LAYER
+#    g.dwell(20)
+#    for i in [0,1,2,3,4,5,6,7]:
+#          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
+#          g.abs_move(**{nozzle:height+.6})
+#          g.toggle_pressure(pressure_box)
+#          g.feed(speed)
+#          g.dwell(dwell)
+#
+#          g.move(y=25)
+#
+#          g.toggle_pressure(pressure_box)
+#          g.feed(20)
+#          g.clip(axis=nozzle, height=1, direction='-y')
+#          
+#    ############5th LAYER
+#    g.dwell(20)
+#    for i in [0,1,2,3,4,5,6,7]:
+#          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
+#          g.abs_move(**{nozzle:height+.8})
+#          g.toggle_pressure(pressure_box)
+#          g.feed(speed)
+#          g.dwell(dwell)
+#
+#          g.move(y=25)
+#
+#          g.toggle_pressure(pressure_box)
+#          g.feed(20)
+#          g.clip(axis=nozzle, height=1, direction='-y')
+#
+#    ############6th LAYER
+#    g.dwell(20)
+#    for i in [0,1,2,3,4,5,6,7]:
+#          g.abs_move(x=my_xstarts[i]-1-2.5-1+.8,y=3+4+7)
+#          g.abs_move(**{nozzle:height+1.})
+#          g.toggle_pressure(pressure_box)
+#          g.feed(speed)
+#          g.dwell(dwell)
+#          g.move(y=25)
+#
+#          g.toggle_pressure(pressure_box)
+#          g.feed(20)
+#          g.clip(axis=nozzle, height=3, direction='-y')
+
+
+
+
+
+
+def arduino_gen2(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+   
+
+    #
+    ##########test line
+    #g.abs_move(x=-2,y=2.5)
+    #g.abs_move(**{nozzle:height})
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.feed(speed)
+    #g.move(x=-15)
+    #g.toggle_pressure(pressure_box)
+    #g.feed(20)
+    #g.clip(axis=nozzle, height=2, direction='-x')
+    #########test line
+    
+    #g.abs_move(x=-30,y=20)
+    #g.set_home(x=0,y=0)
+    #
+    #for i in range(4):
+    #    for j in range (8):
+    #        g.abs_move(x = -ATMEGA328_pad_positions[i][j][0], y = ATMEGA328_pad_positions[i][j][1])
+    #        g.move(x = 0.2, y = 0.2)
+    #        g.rect(x = 0.4, y = 0.4, start = 'UR')
+    
+##    #### SENSOR_VCC, PIN 29
+##    
+#    g.abs_move(x=-20,y=15)                        ###sensor vcc contact
+#    g.abs_move(**{nozzle:height})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(dwell)
+#    g.move(x=2,y=-2)
+#    g.abs_move(x=-ATMEGA328_pad_positions[3][4][0])
+#    g.move(y=-1)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=-0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=-0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.abs_move(y=ATMEGA328_pad_positions[3][4][1])   ##pin 29
+#    g.abs_move(**{nozzle:height+0.1})
+#    g.move(y=1.6)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=1)
+#    g.dwell(0.1)
+#    g.abs_move(**{nozzle:height})
+#    g.abs_move(x=10)
+#    g.move(x=2,y=2)                                ##VCC contact
+#    g.abs_move(**{nozzle:height+0.1})
+#    g.move(x=-2,y=-2)
+#    g.abs_move(x=-(ATMEGA328_pad_positions[0][3][0]-1))
+#    g.dwell(0.1)
+#    g.abs_move(**{nozzle:height})
+#    g.abs_move(y=ATMEGA328_pad_positions[0][3][1])   
+#    g.abs_move(x=-ATMEGA328_pad_positions[0][3][0])   ##pin 4
+#    g.toggle_pressure(pressure_box)
+#    g.feed(15)
+#    g.clip(axis=nozzle, height=2,direction='-x')
+#
+#
+#
+##    ##### SENSOR_GND, PIN 29
+#    
+#    g.abs_move(x=-20,y=-6)                         ###sensor gnd contact
+#    g.abs_move(**{nozzle:height})
+#    g.feed(speed)
+#    
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(dwell)
+#    g.move(x=2,y=2)
+#    g.abs_move(x=-(ATMEGA328_pad_positions[2][4][0]+4))
+#    g.abs_move(y=ATMEGA328_pad_positions[2][6][1])
+#    g.abs_move(x=-ATMEGA328_pad_positions[2][6][0])   ###pin 23, A0
+#    g.abs_move(**{nozzle:height+0.1})
+#    g.move(x=-4)
+#    g.abs_move(y=ATMEGA328_pad_positions[2][4][1])
+#    g.dwell(0.1)
+#    g.abs_move(**{nozzle:height})
+#    g.move(x=1)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(x=0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(x=0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.abs_move(x=-ATMEGA328_pad_positions[2][4][0])   ####pin 21, GND
+#    g.abs_move(x=-4.4,y=4.4)
+#    g.abs_move(x=-0,y=0)
+#    
+#    ####5 OUTPUT LEDs
+#    
+#    g.abs_move(y=-6)
+#    g.move(x=-2)
+#    g.move(y=0.1)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=0.5)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=1.7)
+#    g.abs_move(x=-ATMEGA328_pad_positions[1][4][0])
+#    g.abs_move(y=ATMEGA328_pad_positions[1][4][1])   ###pin 13, DIGITAL OUT1
+#    g.abs_move(**{nozzle:height+0.1})
+#    g.move(y=-0.7)
+#    g.move(x=2.9)
+#    g.move(y=-1.7)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=-0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=-0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=-0.5)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=-0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=-0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=-0.1)
+#    g.dwell(0.1)
+#    g.abs_move(**{nozzle:height})
+#    g.move(x=-2.0)
+#
+#    g.move(y=0.1)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=0.5)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=1.3)
+#    g.abs_move(x=-ATMEGA328_pad_positions[1][5][0])
+#    g.abs_move(y=ATMEGA328_pad_positions[1][5][1])   ###pin 14, DIGITAL OUT2
+#    g.abs_move(**{nozzle:height+0.1})
+#    g.move(y=-1.1)
+#    g.move(x=1.7)
+#    g.move(y=-1.3)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=-0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=-0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=-0.5)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=-0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=-0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=-0.1)
+#    g.dwell(0.1)
+#    g.abs_move(**{nozzle:height})
+#    g.move(x=-2.0)
+#    
+#    g.move(y=0.1)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=0.5)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=0.9)
+#    g.abs_move(x=-ATMEGA328_pad_positions[1][6][0])
+#    g.abs_move(y=ATMEGA328_pad_positions[1][6][1])   ###pin 15, DIGITAL OUT3
+#    g.abs_move(**{nozzle:height+0.1})
+#    g.move(y=-1.5)
+#    g.move(x=0.5)
+#    g.move(y=-0.9)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=-0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=-0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=-0.5)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=-0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=-0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=-0.1)
+#    g.dwell(0.1)
+#    g.abs_move(**{nozzle:height})
+#    g.move(x=-2)
+#    
+#    g.move(y=0.1)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=0.5)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=0.9)
+#    g.abs_move(x=-ATMEGA328_pad_positions[1][7][0])
+#    g.abs_move(y=ATMEGA328_pad_positions[1][7][1])   ###pin 16. DIGITAL OUT4
+#    g.abs_move(**{nozzle:height+0.1})
+#    g.move(y=-1.5)
+#    g.move(x=-0.7)
+#    g.move(y=-0.9)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=-0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=-0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=-0.5)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=-0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=-0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=-0.1)
+#    g.dwell(0.1)
+#    g.abs_move(**{nozzle:height})
+#    g.move(x=-2)
+#    
+#    g.move(y=0.1)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=0.5)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.abs_move(y=ATMEGA328_pad_positions[2][0][1])
+#    g.abs_move(x=-ATMEGA328_pad_positions[2][0][0])   ###pin 17. DIGITAL OUT5
+#    g.abs_move(**{nozzle:height+0.1})
+#    g.move(x=-1.2)
+#    g.move(y=-3.9)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=-0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=-0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=-0.5)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(speed*3)
+#    g.dwell(0.5)
+#    g.move(y=-0.8,**{nozzle:2.0})
+#    g.move(**{nozzle:2})
+#    g.dwell(0.5)
+#    g.move(**{nozzle:-2})
+#    g.move(y=-0.8,**{nozzle:-2.0})
+#    g.feed(speed)
+#    g.toggle_pressure(pressure_box)
+#    g.dwell(0.2)
+#    g.move(y=-0.1)
+#    g.toggle_pressure(pressure_box)
+#    g.feed(15)
+#    g.clip(axis=nozzle, height=2,direction='+y')
+#    
+    
+    g.abs_move(x=-4.4,y=4.4)
+    g.abs_move(**{nozzle:height})
+    g.feed(speed) 
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.abs_move(x=1,y=-1)
+    g.move(x=1)
+    g.toggle_pressure(pressure_box)
+    g.feed(speed*3)
+    g.dwell(0.5)
+    g.move(x=0.8,**{nozzle:2.0})
+    g.move(**{nozzle:2})
+    g.dwell(0.5)
+    g.move(**{nozzle:-2})
+    g.move(x=0.8,**{nozzle:-2.0})
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(0.2)
+    g.move(x=1)
+    g.abs_move(y=ATMEGA328_pad_positions[0][7][1])
+    g.abs_move(x=-ATMEGA328_pad_positions[0][7][0])  ####pin 8, bottom crystal pin
+    g.abs_move(**{nozzle:height+0.1})
+    g.move(x=5)
+    g.dwell(0.1)
+    g.abs_move(**{nozzle:height})
+    g.move(x=2)
+    g.toggle_pressure(pressure_box)
+    g.feed(speed*3)
+    g.dwell(0.5)
+    g.move(y=1.0,**{nozzle:2.0})
+    g.move(**{nozzle:2})
+    g.dwell(0.5)
+    g.move(**{nozzle:-2})
+    g.move(y=1.0,**{nozzle:-2.0})
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(0.2)
+    g.abs_move(y=ATMEGA328_pad_positions[0][4][1])
+    g.move(x=-1.5)
+    g.abs_move(y=ATMEGA328_pad_positions[0][6][1])
+    g.abs_move(x=-ATMEGA328_pad_positions[0][6][0])
+    g.abs_move(**{nozzle:height+0.1})
+    g.move(x=5.5)
+    g.abs_move(y=ATMEGA328_pad_positions[0][4][1])
+    g.move(x=-1.5)
+    g.toggle_pressure(pressure_box)
+    g.feed(speed*3)
+    g.dwell(0.5)
+    g.move(x=-0.8,**{nozzle:2.0})
+    g.move(**{nozzle:2})
+    g.dwell(0.5)
+    g.move(**{nozzle:-2})
+    g.move(x=-0.8,**{nozzle:-2.0})
+    g.feed(speed)
+    g.toggle_pressure(pressure_box)
+    g.dwell(0.2)
+    g.abs_move(x=-ATMEGA328_pad_positions[0][4][0])   ####pin 5, top crystal pin
+    g.toggle_pressure(pressure_box)
+    g.feed(15)
+    g.clip(axis=nozzle, height=2,direction='-x')
+
+
+    g.abs_move(x=12,y=-6)                    ###GND
+    g.abs_move(**{nozzle:height})
+    g.feed(speed)
+    
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.move(x=-2,y=2)
+    g.abs_move(x=-0)
+    g.toggle_pressure(pressure_box)
+    g.feed(15)
+    g.clip(axis=nozzle, height=2,direction='-x')        
+            
+                
 
 #print_die(speed=1.4,dwell=0.1)
 
@@ -2904,7 +3844,24 @@ def tpu_bottom(nozzle,height,speed,dwell,pressure):
 
 
 
-tpu_bottom(nozzle='z',height=0.15,speed=15,dwell=0.2,pressure=40)
+#tpu_bottom(nozzle='z',height=0.15,speed=15,dwell=0.2,pressure=40)
+
+#filament_pic_tests(nozzle='z',height=0.41,speed=3.,dwell=0.2,pressure=15)
+#TPU_film(nozzle='z',height=0.35,speed=10,dwell=0.2,pressure=37,start='BR')
+
+#TPU_film(nozzle='z',height=0.9,speed=12,dwell=0.2,pressure=17,start='UL')
+#TPU_film(nozzle='z',height=1.5,speed=12,dwell=0.2,pressure=17,start='BR')
+#TPU_spacing_tests(nozzle='z',height=0.41,speed=3.,dwell=0.2,pressure=15)
+
+
+#AgTPU_strain_speciman_LED(nozzle='z',height=0.2,speed=4.,dwell=0.2,pressure=21)
+#arduino_gen2(nozzle='z',height=0.14,speed=4,dwell=0.2,pressure=18)
+
+
+#TPU_sensor(nozzle='z',height=0.35,speed=10,dwell=0.2,pressure=37,start='BR')
+#AgTPU_epidermal_sensors(nozzle='z',height=0.14,speed=3.,dwell=0.2,pressure=9)
+
+
 
 
 
