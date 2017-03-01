@@ -1786,18 +1786,18 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
     
-##########test line
-#    g.abs_move(**{nozzle:2})
-#    g.abs_move(x=2,y=2)
-#    g.abs_move(**{nozzle:height})
-#    g.toggle_pressure(pressure_box)
-#    g.dwell(dwell)
-#    g.feed(speed)
-#    g.move(x=10)
-#    g.move(x=-0.2)
-#    g.toggle_pressure(pressure_box)
-#    g.feed(10)
-#    g.clip(axis=nozzle, height=3, direction='-y')
+#########test line
+    g.abs_move(**{nozzle:2})
+    g.abs_move(x=2,y=2)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(x=10)
+    g.move(x=-0.2)
+    g.toggle_pressure(pressure_box)
+    g.feed(10)
+    g.clip(axis=nozzle, height=3, direction='-y')
 
 #########print
 
@@ -1811,7 +1811,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=60)
+    g.move(x=30)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1830,7 +1830,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=60)
+    g.move(x=30)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1849,7 +1849,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=60)
+    g.move(x=30)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1868,7 +1868,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=60)
+    g.move(x=30)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1887,7 +1887,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=60)
+    g.move(x=30)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1906,7 +1906,7 @@ def Ag_pu_HOAC(nozzle,height,speed,pressure,dwell):
     g.move(x=-0.4)
     g.arc(x=0,y=0.00001,radius=-0.6)
     g.move(x=0.4)
-    g.move(x=60)
+    g.move(x=30)
     g.move(x=2)
     g.arc(x=0,y=0.00001,radius=-1)
     g.move(x=-0.4)
@@ -1962,6 +1962,7 @@ def TPU_spacing_tests(nozzle,height,speed,dwell,pressure):
 
 
 
+        
 def AgTPU_strain_gauge(nozzle,height,speed,dwell,pressure,xstart,ystart):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
@@ -2821,6 +2822,118 @@ def TPU_film(nozzle,height,speed,dwell,pressure,start):
         g.feed(20)
         g.clip(axis=nozzle, height=3, direction='-y')
 
+
+def soft_TPU_rect_full(nozzle,height,speed,dwell,pressure,start):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    #
+    
+#######test line
+    g.abs_move(**{nozzle:2})
+    g.abs_move(x=-5,y=4)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(x=-10)
+    g.toggle_pressure(pressure_box)
+    g.feed(10)
+    g.clip(axis=nozzle, height=3, direction='-y')
+
+    my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
+
+
+#######print
+    for i in [0,1,2,3,4,5,6,7]:
+        g.abs_move(x=my_xstarts[i]-3,y=8)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        
+        g.meander(x=-5.8,y=40,orientation='y',spacing=0.5,start='LL')
+
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.clip(axis=nozzle, height=3, direction='+y')
+        g.move(x=-5,y=5)
+        
+        
+def soft_TPU_rect(nozzle,height,speed,dwell,pressure,start):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    #
+    
+#######test line
+    g.abs_move(**{nozzle:2})
+    g.abs_move(x=-5,y=4)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(x=-10)
+    g.toggle_pressure(pressure_box)
+    g.feed(10)
+    g.clip(axis=nozzle, height=3, direction='-y')
+
+    my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
+
+
+#######print
+    for i in [0,1,2,3]:
+        g.abs_move(x=my_xstarts[i]-3,y=8)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.meander(x=-1.5,y=40,orientation='y',spacing=0.5,start='LL')
+        
+        g.meander(x=-2.5,y=18,orientation='y',spacing=0.5,start='LL')
+
+        g.meander(x=-1.8,y=40,orientation='y',spacing=0.55,start='LL')
+        g.move(x=1.8)
+        g.meander(x=2.1,y=-18,orientation='y',spacing=0.55,start='LL')
+
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.clip(axis=nozzle, height=3, direction='+y')
+        g.move(x=-5,y=5)
+
+def stiff_TPU_island(nozzle,height,speed,dwell,pressure,start):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    #
+    
+#######test line
+    g.abs_move(**{nozzle:2})
+    g.abs_move(x=-20,y=4)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(x=-10)
+    g.toggle_pressure(pressure_box)
+    g.feed(10)
+    g.clip(axis=nozzle, height=3, direction='-y')
+
+    my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
+
+
+#######print
+    for i in [0,1,2,3]:
+        g.abs_move(x=my_xstarts[i]-3,y=8)
+        g.move(x=-2,y=17.5)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.meander(x=-1.75,y=5,orientation='y',spacing=0.5,start='LL')
+
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.clip(axis=nozzle, height=3, direction='-y')
+
+
 def TPU_film(nozzle,height,speed,dwell,pressure,start):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
@@ -2849,6 +2962,64 @@ def TPU_film(nozzle,height,speed,dwell,pressure,start):
     g.clip(axis=nozzle, height=3, direction='-y')
 #
 
+def agtpu_line_soft_stiff(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    ##
+    #######test line
+    g.abs_move(**{nozzle:2})
+    g.abs_move(x=-10,y=0)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.dwell(dwell)
+    g.feed(speed)
+    g.move(x=-7)
+    g.toggle_pressure(pressure_box)
+    g.feed(10)
+    g.clip(axis=nozzle, height=3, direction='-y')
+
+    x_res = [-2.56,-11.475,-20.392,-29.129,-37.853,-46.644,-55.384,-64.312]
+    y_res = [24.3,24.3,24.245,24.245,24.206,24.299,24.328,24.397]
+
+    for i in [0,1,2,3,4,5]:
+        g.abs_move(x=x_res[i],y=9)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.move(y=0.4)        
+        g.arc(x=0,y=-0.8,radius=0.4)
+        g.arc(x=0,y=0.8,radius=0.4)
+        g.move(y=0.4)        
+        g.arc(x=0,y=-1.6,radius=0.8)
+        g.arc(x=0,y=1.6,radius=0.8)
+        g.abs_move(y=y_res[i]-0.75)  
+        g.toggle_pressure(pressure_box)
+        g.feed(10)
+        g.clip(axis=nozzle, height=2, direction='+y')
+        
+        g.abs_move(x=x_res[i],y=38)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.move(y=-0.4)        
+        g.arc(x=0,y=0.8,radius=0.4)
+        g.arc(x=0,y=-0.8,radius=0.4)
+        g.move(y=-0.4)        
+        g.arc(x=0,y=1.6,radius=0.8)
+        g.arc(x=0,y=-1.6,radius=0.8)
+        g.abs_move(y=y_res[i]+0.75)  
+        g.toggle_pressure(pressure_box)
+        g.feed(10)
+        g.clip(axis=nozzle, height=2, direction='-y')
+        
+        #g.move(x=0.2)
+        #g.arc(x=0.6,y=0,radius=0.3)
+        #g.arc(x=-0.6,y=0,radius=0.3)
+        #g.move(x=0.2)
+        #g.arc(x=0.2,y=0,radius=0.1)
+        #g.arc(x=-0.2,y=0,radius=0.1)
 
 
 def TPU_sensor(nozzle,height,speed,dwell,pressure,start):
@@ -3129,13 +3300,175 @@ def AgTPU_strain_speciman_LED(nozzle,height,speed,dwell,pressure):
 ###          
 
 
-def AgTPU_strain_speciman_filament(nozzle,height,speed,dwell,pressure):
+def AgTPU_filament(nozzle,height,speed,dwell,pressure,xstart,ystart):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    #
+    #####test line
+    g.abs_move(x=-3,y=3)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.feed(speed)
+    g.dwell(dwell)    
+    g.move(x=-5)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=3, direction='-y')
+    #
+#     
+    g.abs_move(x=xstart,y=ystart)
+ ########## thick
+
+      #bottom left corner
+   
+    for i in [2,3,4,5,6,7]:
+        g.abs_move(y=ystart)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell) 
+        g.move(y=30)
+        g.toggle_pressure(pressure_box)
+        g.feed(20)
+        g.clip(axis=nozzle, height=3, direction='-y')  
+        g.move(x=-6)
+        
+
+        
+def AgTPU_strain_rectangle_y(nozzle,height,speed,dwell,pressure,x,y):
     g.feed(25)
     g.set_pressure(pressure_box, pressure)
     
     
     ####test line
-    g.abs_move(x=-2,y=1.6)
+    g.abs_move(x=-5,y=1)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.feed(speed)
+    g.dwell(dwell)    
+    g.move(x=-10)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=3, direction='-y')    
+
+    #g.abs_move(x=-3,y=4)
+
+    my_y_starts = [3,10,17,24,31,38,42]   #
+    
+#####    ############BOTTOM LAYER 
+##            
+    for i in [0,1,2]:
+          g.abs_move(y=my_y_starts[i],x=-10)
+          g.abs_move(**{nozzle:height})
+          g.toggle_pressure(pressure_box)
+          g.feed(speed)
+          g.dwell(dwell)
+          g.meander(x=-x,y=y,spacing=0.47,orientation='x')
+          g.toggle_pressure(pressure_box)
+          g.feed(20)
+          g.clip(axis=nozzle,height=3, direction='+x')
+
+    g.move(y=-5)                
+ 
+def AgTPU_single_filament(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    xstart= -17
+    ystart= 3
+
+#####    ############BOTTOM LAYER 
+    g.abs_move(x=xstart)
+        
+    for i in [0,1,2]:
+          g.abs_move(y=ystart)
+          g.abs_move(**{nozzle:height})
+          g.toggle_pressure(pressure_box)
+          g.feed(speed)
+          g.dwell(dwell)
+          g.move(y=15)
+          g.toggle_pressure(pressure_box)
+          g.feed(20)
+          g.clip(axis=nozzle,height=3, direction='-x')
+          g.move(x=-1)
+      
+    g.abs_move(x=xstart)
+        
+    for i in [0,1,2]:
+          g.abs_move(y=ystart)
+          g.abs_move(**{nozzle:height+0.08})
+          g.toggle_pressure(pressure_box)
+          g.feed(speed)
+          g.dwell(dwell)
+          g.move(y=15)
+          g.toggle_pressure(pressure_box)
+          g.feed(20)
+          g.clip(axis=nozzle,height=3, direction='+x')
+          g.move(x=-1)                      
+    
+    g.abs_move(x=xstart)
+        
+    for i in [0,1,2]:
+          g.abs_move(y=ystart)
+          g.abs_move(**{nozzle:height+0.16})
+          g.toggle_pressure(pressure_box)
+          g.feed(speed)
+          g.dwell(dwell)
+          g.move(y=15)
+          g.toggle_pressure(pressure_box)
+          g.feed(20)
+          g.clip(axis=nozzle,height=3, direction='+x')
+          g.move(x=-1)                                                  
+    #                                                                              
+def AgTPU_strain_rectangle(nozzle,height,speed,dwell,pressure,x,y):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+    
+    ####test line
+    g.abs_move(x=-2,y=2)
+    g.abs_move(**{nozzle:height})
+    g.toggle_pressure(pressure_box)
+    g.feed(speed)
+    g.dwell(dwell)    
+    g.move(x=-10)
+    g.toggle_pressure(pressure_box)
+    g.feed(20)
+    g.clip(axis=nozzle, height=3, direction='-y')    
+
+    #g.abs_move(x=-3,y=4)
+
+    my_x_starts = [-3,-9.2,-15.4,-21.6,-27.8,-34,-40.2,-46.4,-52.6,-49.8,-55,-60.2]   #spacing to fit 12 rect (2mmx34mm) samples on a TPU flim
+
+#####    ############BOTTOM LAYER 
+##            
+    for i in [0,1,2,3,4,5,6,7,8]:
+          g.abs_move(x=my_x_starts[i],y=4)
+          g.abs_move(**{nozzle:height})
+          g.toggle_pressure(pressure_box)
+          g.feed(speed)
+          g.dwell(dwell)
+          g.meander(x=-x,y=y,spacing=0.3,orientation='y')
+          #g.abs_move(**{nozzle:height+height})
+          #g.meander(x=x,y=-y,spacing=0.3,orientation='y')
+          #g.abs_move(**{nozzle:height+height+height})
+          #g.meander(x=-x,y=y,spacing=0.3,orientation='y')
+          #g.abs_move(**{nozzle:height+height+height+height})
+          #g.meander(x=x,y=-y,spacing=0.3,orientation='y')
+          g.toggle_pressure(pressure_box)
+          g.feed(20)
+          g.clip(axis=nozzle,height=3, direction='+x')
+
+    g.move(y=-5)
+
+def AgTPU_strain_speciman_filament(nozzle,height,speed,dwell,pressure):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    
+#    
+    ####test line
+    g.abs_move(x=-2,y=2)
     g.abs_move(**{nozzle:height-.04})
     g.toggle_pressure(pressure_box)
     g.feed(speed)
@@ -3144,45 +3477,46 @@ def AgTPU_strain_speciman_filament(nozzle,height,speed,dwell,pressure):
     g.toggle_pressure(pressure_box)
     g.feed(20)
     g.clip(axis=nozzle, height=3, direction='-y')
-##    
+    
+####    
     my_xstarts = [-3.0, -11.825, -20.65, -29.474999999999998, -38.3, -47.125, -55.949999999999996, -64.77499999999999]
-####
+###
 #####    ############BOTTOM LAYER
 ##            
-    for i in [0,1,2,3,4,5,6,7]:
-          g.abs_move(x=my_xstarts[i]-1.5,y=3+6)
-          g.abs_move(**{nozzle:height+0.05})
-          g.toggle_pressure(pressure_box)
-          g.feed(speed*0.7)
-          g.dwell(dwell)
-#
-          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
-          g.move(x=2.5)
-          g.move(y=1.5)
-          g.move(x=0.8,y=-1.3)
-          g.move(x=-1.6)
-          g.move(x=0.8,y=1.3)
-          
-          g.abs_move(**{nozzle:height})
-          g.feed(speed)
-          g.move(y=21)
-          
-          g.feed(speed*0.7)
-          g.abs_move(**{nozzle:height+0.05})
-          g.move(x=0.8,y=1.3)
-          g.move(x=-1.6)
-          g.move(x=0.8,y=-1.3)
-          g.move(y=1.5)
-          g.move(x=2.5)
-          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
-          g.toggle_pressure(pressure_box)
-          g.feed(20)
-          g.clip(axis=nozzle,height=1, direction='+x')
+#    for i in [0,1,2,3,4,5,6,7]:
+#          g.abs_move(x=my_xstarts[i]+0.3-4.5-0.75+3.5,y=3+6+1)
+#          g.abs_move(**{nozzle:height})
+#          g.toggle_pressure(pressure_box)
+#          g.feed(speed*0.5)
+#          g.dwell(dwell)
+##
+#          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
+#          g.move(x=2.5)
+#          g.move(y=1.5)
+#          g.move(x=0.8,y=-1.3)
+#          g.move(x=-1.6)
+#          g.move(x=0.8,y=1.3)
 #          
-    g.dwell(90)
+#          g.abs_move(**{nozzle:height})
+#          g.feed(speed)
+#          g.move(y=21)
+#          
+#          g.feed(speed*0.5)
+#          g.abs_move(**{nozzle:height})
+#          g.move(x=0.8,y=1.3)
+#          g.move(x=-1.6)
+#          g.move(x=0.8,y=-1.3)
+#          g.move(y=1.5)
+#          g.move(x=2.5)
+#          g.meander(x=-5,y=4,spacing=0.32,orientation='y')
+#          g.toggle_pressure(pressure_box)
+#          g.feed(20)
+#          g.clip(axis=nozzle,height=3, direction='+x')
+##          
+    #g.dwell(90)
     ##########2nd LAYER     
-    for i in [0,1,2,3,4,5,6,7]:
-          g.abs_move(x=my_xstarts[i]-2.5-1.5,y=3+6+4)
+    for i in [5,6,7]:
+          g.abs_move(x=my_xstarts[i]-2.5+0.3-4.5-0.75+3.5-.1,y=3+6+4+1)
           g.abs_move(**{nozzle:height+0.08})
           g.toggle_pressure(pressure_box)
           g.feed(speed)
@@ -3193,13 +3527,13 @@ def AgTPU_strain_speciman_filament(nozzle,height,speed,dwell,pressure):
 
           g.toggle_pressure(pressure_box)
           g.feed(20)
-          g.clip(axis=nozzle, height=1, direction='-y')
+          g.clip(axis=nozzle, height=3, direction='-y')
 #    
     g.dwell(90)
 ##   
 ###    ############3rd LAYER
-    for i in [0,1,2,3,4,5,6,7]:
-          g.abs_move(x=my_xstarts[i]-2.5-1.5,y=3+6+4)
+    for i in [5,6,7]:
+          g.abs_move(x=my_xstarts[i]-2.5+0.3-4.5-0.75+3.5-.1,y=3+6+4+1)
           g.abs_move(**{nozzle:height+0.16})
           g.toggle_pressure(pressure_box)
           g.feed(speed)
@@ -3209,7 +3543,7 @@ def AgTPU_strain_speciman_filament(nozzle,height,speed,dwell,pressure):
 
           g.toggle_pressure(pressure_box)
           g.feed(20)
-          g.clip(axis=nozzle, height=1, direction='-y')
+          g.clip(axis=nozzle, height=3, direction='-y')
 ####          
 ###          
 ##    ############4th LAYER
@@ -3746,7 +4080,133 @@ def arduino_gen2(nozzle,height,speed,dwell,pressure):
     g.feed(15)
     g.clip(axis=nozzle, height=2,direction='-x')        
             
+def AgTPU_pulse_sensor(nozzle,height,speed,dwell,pressure,startx,starty,orientation):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    ##
+    ########test line
+    #g.abs_move(**{nozzle:2})
+    #g.abs_move(x=0,y=0.5)
+    #g.abs_move(**{nozzle:height})
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.feed(speed)
+    #g.move(x=-7)
+    #g.toggle_pressure(pressure_box)
+    #g.feed(10)
+    #g.clip(axis=nozzle, height=3, direction='-y')                
+    
+    if orientation=='up':
+        g.abs_move(x=startx,y=starty)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.move(x=-3,y=3.2)
+        g.move(y=-3.2)
+        g.move(x=3,y=3.2)
+        g.move(x=-3.2)
+
+        g.move(x=-5,y=5)
+        g.meander(x=-5,y=10,spacing=1.0,orientation='y')                ###strain gauge 
+        g.move(x=-5,y=-5)
+        
+        g.move(x=-3.2)
+        g.move(x=3,y=-3.2)
+        g.move(y=3.2)
+        g.move(x=-3,y=-3.2)
+  
+        g.toggle_pressure(pressure_box)
+        g.feed(10)
+        g.clip(axis=nozzle, height=3, direction='-y')    
+    else:
+        g.abs_move(x=startx,y=starty)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        
+        g.move(x=-3,y=-3.2)
+        g.move(y=3.2)
+        g.move(x=3,y=-3.2)
+        g.move(x=-3.2)
                 
+        g.move(x=-5,y=-5)
+        g.meander(x=-5,y=-10,spacing=1.0,orientation='y')
+        g.move(x=-5,y=5)
+        
+        g.move(x=-3.2)
+        g.move(x=3,y=3.2)
+        g.move(y=-3.2)
+        g.move(x=-3,y=3.2)
+
+        g.toggle_pressure(pressure_box)
+        g.feed(10)
+        g.clip(axis=nozzle, height=3, direction='-y')       
+
+
+def AgTPU_pulse_sensor_electrode(nozzle,height,speed,dwell,pressure,startx,starty,orientation):
+    g.feed(25)
+    g.set_pressure(pressure_box, pressure)
+    ##
+    ########test line
+    #g.abs_move(**{nozzle:2})
+    #g.abs_move(x=0,y=0.5)
+    #g.abs_move(**{nozzle:height})
+    #g.toggle_pressure(pressure_box)
+    #g.dwell(dwell)
+    #g.feed(speed)
+    #g.move(x=-7)
+    #g.toggle_pressure(pressure_box)
+    #g.feed(10)
+    #g.clip(axis=nozzle, height=3, direction='-y')                
+    
+    if orientation=='up':
+        g.abs_move(x=startx,y=starty)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.meander(x=-3,y=3.2,spacing=0.32,orientation='x')
+        g.toggle_pressure(pressure_box)
+        g.feed(10)
+        g.clip(axis=nozzle, height=3, direction='-y') 
+
+        g.move(x=-15)
+
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.meander(x=-3,y=-3.2,spacing=0.2,orientation='x')
+        g.toggle_pressure(pressure_box)
+        g.feed(10)
+        g.clip(axis=nozzle, height=3, direction='-y') 
+   
+    else:
+        g.abs_move(x=startx,y=starty)
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.meander(x=-3,y=-3.2,spacing=0.2,orientation='x')
+        g.toggle_pressure(pressure_box)
+        g.feed(10)
+        g.clip(axis=nozzle, height=3, direction='-y') 
+
+        g.move(x=-15)
+       
+        g.abs_move(**{nozzle:height})
+        g.toggle_pressure(pressure_box)
+        g.feed(speed)
+        g.dwell(dwell)
+        g.meander(x=-3,y=3.2,spacing=0.2,orientation='x')
+        g.toggle_pressure(pressure_box)
+        g.feed(10)
+        g.clip(axis=nozzle, height=3, direction='-y')       
+
+
+
 
 #print_die(speed=1.4,dwell=0.1)
 
@@ -3786,7 +4246,6 @@ def arduino_gen2(nozzle,height,speed,dwell,pressure):
 #agtpu_single_filaments_layered(nozzle='z',height=0.38,speed=5,dwell=0.02,pressure=40)
 
 
-#Ag_pu_HOAC(nozzle='z',height=0.15,speed=4,pressure=26,dwell=0.5)
 
 #TPU_spacing_tests(nozzle='z',height=0.4+0.3+0.3,speed=11,dwell=0.2,pressure=6)
 #TPU_spacing_tests(nozzle='z',height=0.4,speed=12,dwell=0.2,pressure=2)   ####pdms
@@ -3858,22 +4317,57 @@ def arduino_gen2(nozzle,height,speed,dwell,pressure):
 #TPU_film(nozzle='z',height=0.35,speed=10,dwell=0.2,pressure=37,start='BR')
 
 #TPU_film(nozzle='z',height=0.9,speed=12,dwell=0.2,pressure=17,start='UL')
-#TPU_film(nozzle='z',height=0.25,speed=12,dwell=0.2,pressure=43,start='BR')
 #TPU_spacing_tests(nozzle='z',height=0.41,speed=3.,dwell=0.2,pressure=15)
 
 
 #AgTPU_strain_speciman_LED(nozzle='z',height=0.2,speed=4.,dwell=0.2,pressure=21)
-AgTPU_strain_speciman_filament(nozzle='z',height=0.18,speed=4.,dwell=0.2,pressure=21)
+#AgTPU_strain_speciman_filament(nozzle='z',height=0.18,speed=4.,dwell=0.2,pressure=11)
 #arduino_gen2(nozzle='z',height=0.18,speed=5,dwell=0.2,pressure=16)
 
 
 #TPU_sensor(nozzle='z',height=0.35,speed=10,dwell=0.2,pressure=37,start='BR')
 #AgTPU_epidermal_sensors(nozzle='z',height=0.14,speed=3.,dwell=0.2,pressure=9)
 
-
+#
 #AgTPU_strain_gauge(nozzle='z',height=0.18,speed=4,dwell=0.1,pressure=18,xstart=-3,ystart=3)
 
+#Ag_pu_HOAC(nozzle='z',height=0.3,speed=9,pressure=20,dwell=0.5)
+#g.rect(x=-66,y=40)
 
+#TPU_film(nozzle='z',height=0.25,speed=12,dwell=0.2,pressure=43,start='BR')
+
+#AgTPU_filament(nozzle='z',height=0.23,speed=4,dwell=0.1,pressure=18,xstart=-5,ystart=6)
+
+#g.rect(x=-67,y=42)
+
+AgTPU_strain_rectangle(nozzle='z',height=0.15,speed=8.,dwell=0.2,pressure=55,x=3,y=30)
+
+#AgTPU_single_filament(nozzle='z',height=0.2,speed=14.,dwell=0.2,pressure=25)
+
+#AgTPU_strain_rectangle_y(nozzle='z',height=0.35,speed=8.,dwell=0.2,pressure=11,x=40,y=3)   ###no surf
+
+#AgTPU_strain_rectangle_y(nozzle='z',height=0.35,speed=8.,dwell=0.2,pressure=4,x=40,y=3)     ###surf
+
+xoffset=12.272
+yoffset=59.133
+#soft_TPU_rect(nozzle='z',height=0.35,speed=12,dwell=0.2,pressure=48,start='BR')
+#soft_TPU_rect_full(nozzle='z',height=0.35,speed=12,dwell=0.2,pressure=48,start='BR')
+
+#g.abs_move(x=xoffset,y=yoffset)
+#g.set_home(x=0,y=0)
+#stiff_TPU_island(nozzle='z',height=0.35,speed=3,dwell=0.2,pressure=55,start='BR')
+
+#agtpu_line_soft_stiff(nozzle='z',height=0.42,speed=3,dwell=0.2,pressure=8)
+##g.rect(x=-68,y=40)
+#AgTPU_pulse_sensor(nozzle='z',height=0.2,speed=6,dwell=0.2,pressure=25,startx=-3,starty=3,orientation='up')
+#AgTPU_pulse_sensor(nozzle='z',height=0.2,speed=6,dwell=0.2,pressure=25,startx=-16,starty=37,orientation='down')
+#AgTPU_pulse_sensor(nozzle='z',height=0.2,speed=6,dwell=0.2,pressure=25,startx=-29,starty=3,orientation='up')
+#AgTPU_pulse_sensor(nozzle='z',height=0.2,speed=6,dwell=0.2,pressure=25,startx=-42,starty=37,orientation='dpwn')
+
+#AgTPU_pulse_sensor_electrode(nozzle='z',height=0.3,speed=5,dwell=0.2,pressure=20,startx=-3,starty=3,orientation='up')
+#AgTPU_pulse_sensor_electrode(nozzle='z',height=0.3,speed=5,dwell=0.2,pressure=17,startx=-16,starty=37,orientation='down')
+#AgTPU_pulse_sensor_electrode(nozzle='z',height=0.3,speed=5,dwell=0.2,pressure=17,startx=-29,starty=3,orientation='up')
+#AgTPU_pulse_sensor_electrode(nozzle='z',height=0.3,speed=5,dwell=0.2,pressure=17,startx=-42,starty=37,orientation='dpwn')
 
 g.view(backend='matplotlib')
 
